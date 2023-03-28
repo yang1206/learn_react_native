@@ -6,42 +6,53 @@ import {
   View,
   Text,
   Platform,
+  Alert,
 } from 'react-native'
+import { format } from 'date-fns'
+import { useStore } from '../store'
 import DropDownPicker from 'react-native-dropdown-picker'
-import DateTimePicker from '@react-native-community/datetimepicker'
-interface TaskInputProps {
-  task: string;
-  setTask: (task: string) => void;
-  handleAddTask: (priority: string, dueDate: string, label: string) => void;
-}
-const TaskInput: React.FC<TaskInputProps> = ({
-  task,
-  setTask,
-  handleAddTask,
-}) => {
+import DateTimePickerModal from "react-native-modal-datetime-picker"
+const TaskInput = () => {
   const [priority, setPriority] = useState<string>('Low')
   const [dueDate, setDueDate] = useState<string>('')
   const [label, setLabel] = useState<string>('')
   const [showDatePicker, setShowDatePicker] = useState<boolean>(false)
   const [open, setOpen] = useState(false)
+  const [task, setTask] = useState<string>('')
   const [items, setItems] = useState([
     { label: 'Low', value: 'Low' },
     { label: 'Medium', value: 'Medium' },
     { label: 'High', value: 'High' },
   ])
-  const onAddTask = () => {
-    handleAddTask(priority, dueDate, label)
-    setPriority('Low')
-    setDueDate('')
-    setLabel('')
-  }
-  const handleDateChange = (event: Event, selectedDate?: Date) => {
-    if (selectedDate) {
-      const formattedDate = selectedDate.toISOString().split('T')[0]
+  const handleDateChange = (date: Date) => {
+    // Alert.alert(new Date(date).getDate().toString())
+    
+    if (date) {
+      const formattedDate = format(date,'yyyy-MM-dd')
       setDueDate(formattedDate)
     }
     setShowDatePicker(false)
   }
+  const { addTodo } = useStore()
+  const handleAddTodo = () => {
+    if (task.trim() === '') {
+      Alert.alert('Please enter a non-empty task')
+      return
+    }
+    const newTodo = {
+      id: Math.random().toString(),
+      task,
+      priority,
+      dueDate,
+      label,
+    }
+    addTodo(newTodo)
+    setTask("")
+    setPriority("")
+    setDueDate("")
+    setLabel("")
+  }
+
   return (
     <View>
       <TextInput
@@ -61,30 +72,33 @@ const TaskInput: React.FC<TaskInputProps> = ({
         dropDownContainerStyle={styles.dropdown}
         setValue={setPriority}
         setItems={setItems}
+        zIndex={9000}
       />
       <TextInput
         style={styles.input}
-        onFocus={() => setShowDatePicker(true)}
+        onPressIn={() => setShowDatePicker(true)}
         value={dueDate}
         placeholder="Due date (yyyy-mm-dd)"
-      // editable={true}
+        editable={true}
       />
-      {showDatePicker && (
-        <DateTimePicker
-          value={dueDate ? new Date(dueDate) : new Date()}
-          mode="date"
-          display="default"
-          onChange={handleDateChange}
-        />
-      )}
+
+      <DateTimePickerModal
+        isVisible={showDatePicker}
+        date={dueDate ? new Date(dueDate) : new Date()}
+        mode="date"
+        // display="default"
+        onConfirm={handleDateChange}
+        onCancel={() => { setShowDatePicker(false) }}
+      />
+
       <TextInput
         style={styles.input}
         onChangeText={setLabel}
         value={label}
         placeholder="Label"
       />
-      <TouchableOpacity style={styles.addButton} onPress={onAddTask}>
-        <Text style={styles.addButtonText}>Add</Text>
+      <TouchableOpacity style={styles.addButton} onPress={handleAddTodo}>
+        <Text style={styles.addButtonText}>增加</Text>
       </TouchableOpacity>
     </View>
   )
@@ -110,7 +124,7 @@ const styles = StyleSheet.create({
     borderColor: '#BDBDBD',
     borderWidth: 1,
     borderRadius: 10,
-    marginBottom:30
+    marginBottom: 30
   },
   dropdownItem: {
     justifyContent: 'flex-start',

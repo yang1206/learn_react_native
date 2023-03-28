@@ -1,27 +1,22 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { useStore } from '../store'
+import { Todo } from '../store/TodoSlice'
 
-interface Task {
-  id: string;
-  task: string;
-  priority: string;
-  dueDate: string;
-  label: string;
-}
 
-interface TaskItemProps {
-  task: Task;
-  handleDeleteTask: (id: string) => void;
-}
+const TaskItem: React.FC<{ task: Todo }> = ({ task }) => {
+  const { removeTodo } = useStore()
 
-const TaskItem: React.FC<TaskItemProps> = ({ task, handleDeleteTask }) => {
+  const handleRemoveTodo = () => {
+    removeTodo(task.id)
+  }
   return (
     <View style={styles.taskItem}>
       <Text style={styles.taskText}>{task.task}</Text>
       <Text style={styles.taskDetails}>
         Priority: {task.priority} | Due: {task.dueDate} | Label: {task.label}
       </Text>
-      <TouchableOpacity onPress={() => handleDeleteTask(task.id)}>
+      <TouchableOpacity onPress={() => handleRemoveTodo()}>
         <Text style={styles.deleteButton}>X</Text>
       </TouchableOpacity>
     </View>

@@ -1,30 +1,28 @@
 import React from 'react'
-import { FlatList } from 'react-native'
+import {  FlatList, ScrollView } from 'react-native'
 import TaskItem from './TaskItem'
+import { useStore } from '../store'
 
-interface Task {
-  id: string;
-  task: string;
-  priority: string;
-  dueDate: string;
-  label: string;
-}
 
-interface TaskListProps {
-  taskList: Task[];
-  handleDeleteTask: (id: string) => void;
-}
 
-const TaskList: React.FC<TaskListProps> = ({ taskList, handleDeleteTask }) => {
+const TaskList: React.FC = () => {
+  const { todos } = useStore()
   return (
-    <FlatList
-      data={taskList}
-      renderItem={({ item }) => (
-        <TaskItem task={item} handleDeleteTask={handleDeleteTask} />
-      )}
-      keyExtractor={item => item.id}
-    />
+    
+    <>
+      <FlatList
+        nestedScrollEnabled={true}
+        data={todos}
+        renderItem={({ item }) => (
+          <TaskItem task={item} />
+        )}
+        keyExtractor={item => item.id}
+      />
+   </>
+
   )
 }
+
+
 
 export default TaskList
