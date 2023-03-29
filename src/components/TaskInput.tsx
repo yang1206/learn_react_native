@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
 import {
+  Alert,
+  Platform,
   StyleSheet,
+  Text,
   TextInput,
   TouchableOpacity,
   View,
-  Text,
-  Platform,
-  Alert,
 } from 'react-native'
 import { format } from 'date-fns'
-import { useStore } from '../store'
 import DropDownPicker from 'react-native-dropdown-picker'
-import DateTimePickerModal from "react-native-modal-datetime-picker"
+import DateTimePickerModal from 'react-native-modal-datetime-picker'
+import { useStore } from '../store'
 const TaskInput = () => {
   const [priority, setPriority] = useState<string>('Low')
   const [dueDate, setDueDate] = useState<string>('')
@@ -26,9 +26,9 @@ const TaskInput = () => {
   ])
   const handleDateChange = (date: Date) => {
     // Alert.alert(new Date(date).getDate().toString())
-    
+
     if (date) {
-      const formattedDate = format(date,'yyyy-MM-dd')
+      const formattedDate = format(date, 'yyyy-MM-dd')
       setDueDate(formattedDate)
     }
     setShowDatePicker(false)
@@ -47,10 +47,10 @@ const TaskInput = () => {
       label,
     }
     addTodo(newTodo)
-    setTask("")
-    setPriority("")
-    setDueDate("")
-    setLabel("")
+    setTask('')
+    setPriority('')
+    setDueDate('')
+    setLabel('')
   }
 
   return (
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     borderColor: '#BDBDBD',
     borderWidth: 1,
     borderRadius: 10,
-    marginBottom: 30
+    marginBottom: 30,
   },
   dropdownItem: {
     justifyContent: 'flex-start',

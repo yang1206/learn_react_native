@@ -3,7 +3,7 @@ module.exports = {
     '@antfu/eslint-config-react',
   ],
   root: true,
-  parser: '@typescript-eslint/parser',
+  // parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint', 'react-hooks', 'react', 'react-native'],
   overrides: [
     {
@@ -13,6 +13,13 @@ module.exports = {
         'no-shadow': 'off',
         'no-undef': 'off',
       },
+
+    },
+    {
+      files: ['*.json'],
+      rules: {
+        quotes: ['error', 'double'],
+      },
     },
   ],
   rules: {
@@ -20,7 +27,8 @@ module.exports = {
     // 'quotes': ['error', 'single'], // 使用单引号
     'no-console': 'warn', // console 报警
     'react-native/no-inline-styles': 'warn', // 报警内联样式
-    'no-use-before-define': 'on',
-    '@typescript-eslint/no-use-before-define': 'warn',
+    '@typescript-eslint/no-use-before-define': 'off',
+    'react-hooks/rules-of-hooks': 'off', // Checks rules of Hooks
+    'react-hooks/exhaustive-deps': 'warn', // Checks effect dependencies
   },
 }

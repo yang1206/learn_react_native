@@ -1,14 +1,12 @@
 import React from 'react'
-import {  FlatList, ScrollView } from 'react-native'
-import TaskItem from './TaskItem'
+import { FlatList } from 'react-native'
 import { useStore } from '../store'
-
-
+import TaskItem from './TaskItem'
 
 const TaskList: React.FC = () => {
   const { todos } = useStore()
   return (
-    
+
     <>
       <FlatList
         nestedScrollEnabled={true}
@@ -22,7 +20,5 @@ const TaskList: React.FC = () => {
 
   )
 }
-
-
 
 export default TaskList

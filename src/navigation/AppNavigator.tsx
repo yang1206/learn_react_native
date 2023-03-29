@@ -1,24 +1,27 @@
-import { useColorScheme, PlatformColor } from 'react-native';
-import { NavigationContainer, Theme } from '@react-navigation/native';
-import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
+import { PlatformColor, useColorScheme } from 'react-native'
+import type { StackScreenProps } from '@react-navigation/stack'
+import type { ParamListBase } from '@react-navigation/native'
+import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native'
 
-import  HomeScreen  from '@/screens/Home';
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-export type AppStackParamList = {
-  Home: undefined;
-  Settings: undefined;
-  AppMask: undefined;
-};
+import HomeScreen from '../screens/Home'
+import AboutScreen from '../screens/About'
+import { navigationRef } from './helpers/navigationUtilities'
+export interface AppStackParamList extends ParamListBase {
+  Home: undefined
+  About: undefined
+}
 
-export type AppStackScreenProps<T extends keyof AppStackParamList> = NativeStackScreenProps<
+export type AppStackScreenProps<T extends keyof AppStackParamList> = StackScreenProps<
   AppStackParamList,
   T
->;
+>
 
-const Stack = createNativeStackNavigator<AppStackParamList>();
+const Stack = createNativeStackNavigator<AppStackParamList>()
 
-const AppStack = (function AppStack() {
-  const isDark = useColorScheme() === 'dark';
+const AppStack = function AppStack() {
+  const isDark = useColorScheme() === 'dark'
 
   return (
     <Stack.Navigator
@@ -34,9 +37,13 @@ const AppStack = (function AppStack() {
         }}
         component={HomeScreen}
       />
+      <Stack.Screen
+        name="About"
+        component={AboutScreen}
+      />
     </Stack.Navigator>
-  );
-});
+  )
+}
 
 interface NavigationProps extends Partial<React.ComponentProps<typeof NavigationContainer>> { }
 
@@ -45,12 +52,16 @@ const theme = {
     primary: PlatformColor('systemBlue'),
     text: PlatformColor('label'),
   },
-};
+}
 
-export const AppNavigator = (function AppNavigator(props: NavigationProps) {
+export const AppNavigator = function AppNavigator(props: NavigationProps) {
+  const colorScheme = useColorScheme()
   return (
-    <NavigationContainer {...props} theme={theme as unknown as Theme}>
+    <NavigationContainer {...props}
+      ref={navigationRef}
+      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+    >
       <AppStack />
     </NavigationContainer>
-  );
-});
+  )
+}

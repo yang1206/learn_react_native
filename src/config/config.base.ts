@@ -1,35 +1,26 @@
-import { appId } from '../../app.json';
-
-interface IBaseConfig {
-  persistNavigation: 'always' | 'dev' | 'prod' | 'never';
-
-  appId: string;
-  privacyPolicy: {
-    zh_cn: string;
-    en_us: string;
-  };
-  userAgreement: {
-    zh_cn: string;
-    en_us: string;
-  };
+export interface ConfigBaseProps {
+  persistNavigation: 'always' | 'dev' | 'prod' | 'never'
+  catchErrors: 'always' | 'dev' | 'prod' | 'never'
+  exitRoutes: string[]
 }
 
-const BaseConfig: IBaseConfig = {
+export type PersistNavigationConfig = ConfigBaseProps['persistNavigation']
+
+const BaseConfig: ConfigBaseProps = {
+  // This feature is particularly useful in development mode, but
+  // can be used in production as well if you prefer.
   persistNavigation: 'dev',
 
-  appId,
+  /**
+   * Only enable if we're catching errors in the right environment
+   */
+  catchErrors: 'always',
 
-  privacyPolicy: {
-    zh_cn: 'https://zh-cn/privacy-policy',
-    en_us: 'https://en-us/privacy-policy',
-  },
+  /**
+   * This is a list of all the route names that will exit the app if the back button
+   * is pressed while in that screen. Only affects Android.
+   */
+  exitRoutes: ['Welcome'],
+}
 
-  userAgreement: {
-    zh_cn: 'https://zh-cn/user-agreement',
-    en_us: 'https://en-us/user-agreement',
-  },
-};
-
-export type PersistNavigationConfig = IBaseConfig['persistNavigation'];
-
-export default BaseConfig;
+export default BaseConfig

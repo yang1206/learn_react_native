@@ -1,8 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { useStore } from '../store'
-import { Todo } from '../store/TodoSlice'
-
+import type { Todo } from '../store/TodoSlice'
 
 const TaskItem: React.FC<{ task: Todo }> = ({ task }) => {
   const { removeTodo } = useStore()

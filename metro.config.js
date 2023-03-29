@@ -5,4 +5,12 @@ module.exports = makeMetroConfig({
   resolver: {
     resolveRequest: MetroSymlinksResolver(),
   },
+  transformer: {
+    getTransformOptions: async () => ({
+      transform: {
+        experimentalImportSupport: false,
+        inlineRequires: true,
+      },
+    }),
+  },
 })

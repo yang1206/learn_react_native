@@ -1,16 +1,17 @@
-import { StyleSheet, Text, View, Switch } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
+import { useState } from 'react'
 import TaskList from '../components/TaskList'
 import TaskInput from '../components/TaskInput'
 import { SafeAreaScrollView } from '../components/SafeAreaScrollView'
 // import { Switch } from 'react-native-gesture-handler'
-import { useState } from 'react'
+import { navigate } from '@/navigation'
 export default function Home() {
-  const [is,setIs] = useState(false)
+  const [is, setIs] = useState(false)
   return (
     <SafeAreaScrollView>
       <View style={styles.container}>
-        <Switch  onValueChange={(value)=>{setIs(value)}} value={is}  />
-        <Text style={{ fontSize: 18 }} >关于</Text>
+        {/* <Switch  onValueChange={(value)=>{setIs(value)}} value={is}  /> */}
+        <Text style={{ fontSize: 18 }} onPress={() => { navigate('About') }}>关于</Text>
         <TaskInput />
         <TaskList />
       </View>

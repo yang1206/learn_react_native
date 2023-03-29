@@ -1,8 +1,9 @@
-import { ScrollView, ScrollViewProps, ViewStyle } from 'react-native'
-import { SafeAreaView, SafeAreaViewProps } from 'react-native-safe-area-context'
+import type { ScrollViewProps, ViewStyle } from 'react-native'
+import type { SafeAreaViewProps } from 'react-native-safe-area-context'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 interface SafeAreaScrollViewProps extends ScrollViewProps {
-  safeAreaProps?: SafeAreaViewProps;
+  safeAreaProps?: SafeAreaViewProps
 }
 
 export function SafeAreaScrollView({

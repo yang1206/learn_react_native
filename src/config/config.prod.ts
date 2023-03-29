@@ -5,4 +5,4 @@
  *
  * https://reactnative.dev/docs/security#storing-sensitive-info
  */
-export default {};
+export default {}
