@@ -1,28 +1,15 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
-  "display": "React Native",
-  "_version": "2.0.3",
+  "extends": "@tsconfig/react-native/tsconfig.json",
   "compilerOptions": {
     "target": "esnext",
     "module": "commonjs",
-    "types": [
-      "react-native",
-      "jest"
-    ],
     "lib": [
-      "es2019"
+      "es6"
     ],
     "allowJs": true,
     "jsx": "react-native",
     "noEmit": true,
-    "isolatedModules": true,
     "strict": true,
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
     "baseUrl": "./",
     "paths": {
       "@/*": [
@@ -37,7 +24,7 @@
     "jest.config.js"
   ],
   "include": [
-    "src/*.tsx",
-    "src/*.ts"
+    "**/*.tsx",
+    "**/*.ts"
   ]
 }

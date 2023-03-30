@@ -1,11 +1,33 @@
+import { styled, useColorScheme } from 'nativewind'
 import React from 'react'
-import { StyleSheet, Text, TouchableHighlight, View } from 'react-native'
+import { Pressable, StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 import { SafeAreaScrollView } from '../components/SafeAreaScrollView'
 
 export const About = () => {
+  const StyledPressable = styled(Pressable)
+  const StyledText = styled(Text)
+  const { colorScheme, toggleColorScheme } = useColorScheme()
+
   return (
     <SafeAreaScrollView>
+      <StyledPressable
+        onPress={toggleColorScheme}
+        className="flex-1 items-center justify-center dark:bg-slate-800"
+      >
+        <StyledText
+          selectable={false}
+          className="dark:text-white"
+        >
+          {`Try clicking me! ${colorScheme === 'dark' ? '🌙' : '🌞'}`}
+        </StyledText>
+
       <View style={styles.container}>
+        <StyledText
+          selectable={false}
+          className="dark:text-white"
+        >
+          {`Try clicking me! ${colorScheme === 'dark' ? '🌙' : '🌞'}`}
+        </StyledText>
         <Text style={styles.title}>About This App</Text>
         <Text style={styles.text}>
           This is a simple todo app built with React Native and MobX.
@@ -32,6 +54,7 @@ export const About = () => {
             </Text></TouchableHighlight>
         </View>
       </View>
+      </StyledPressable>
     </SafeAreaScrollView>
   )
 }
@@ -40,6 +63,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    paddingTop: 100,
     alignItems: 'center',
   },
   title: {
