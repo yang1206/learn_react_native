@@ -12,7 +12,7 @@ export const About = () => {
     <SafeAreaScrollView>
       <StyledPressable
         onPress={toggleColorScheme}
-        className="flex-1 items-center justify-center dark:bg-slate-800"
+        className="flex-1 pt-3 items-center justify-center dark:bg-slate-800"
       >
         <StyledText
           selectable={false}

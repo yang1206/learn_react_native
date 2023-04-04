@@ -30,5 +30,6 @@ module.exports = {
     '@typescript-eslint/no-use-before-define': 'off',
     'react-hooks/rules-of-hooks': 'off', // Checks rules of Hooks
     'react-hooks/exhaustive-deps': 'warn', // Checks effect dependencies
+    '@typescript-eslint/consistent-type-definitions': 'off',
   },
 }

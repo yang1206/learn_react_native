@@ -1,4 +1,5 @@
 import type { ScrollViewProps, ViewStyle } from 'react-native'
+import { ScrollView } from 'react-native'
 import type { SafeAreaViewProps } from 'react-native-safe-area-context'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
@@ -17,9 +18,9 @@ export function SafeAreaScrollView({
       {...safeAreaProps}
       style={[$defaultSafeAreaStyle, safeAreaProps?.style]}
     >
-      {/* <ScrollView contentInsetAdjustmentBehavior="automatic" {...scrollViewProps}> */}
+      <ScrollView contentInsetAdjustmentBehavior="automatic" {...scrollViewProps}>
         {children}
-      {/* </ScrollView> */}
+      </ScrollView>
     </SafeAreaView>
   )
 }

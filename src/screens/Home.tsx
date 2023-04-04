@@ -1,24 +1,14 @@
-import { StyleSheet, Text, View } from 'react-native'
-import TaskList from '../components/TaskList'
-import TaskInput from '../components/TaskInput'
-import { SafeAreaScrollView } from '../components/SafeAreaScrollView'
-import { navigate } from '../navigation'
+import { Button, Text, View } from 'react-native'
+import React from 'react'
+import { useColorScheme } from 'nativewind'
+
 export default function Home() {
+  const { colorScheme, toggleColorScheme } = useColorScheme()
   return (
-    <SafeAreaScrollView>
-      <View style={styles.container}>
-        <Text className="text-sky-500 text-[10vw]" onPress={() => { navigate('About') }}>关于</Text>
-        <TaskInput />
-        <TaskList />
-      </View>
-    </SafeAreaScrollView>
+    <View>
+      <Text>
+        <Button onPress={() => { toggleColorScheme() }} title="切换主题"></Button>
+      </Text>
+    </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    alignItems: 'center',
-  },
-})
