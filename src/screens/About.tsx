@@ -3,7 +3,7 @@ import React from 'react'
 import { Pressable, StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 import { SafeAreaScrollView } from '../components/SafeAreaScrollView'
 
-export const About = () => {
+export function About() {
   const StyledPressable = styled(Pressable)
   const StyledText = styled(Text)
   const { colorScheme, toggleColorScheme } = useColorScheme()
@@ -11,11 +11,12 @@ export const About = () => {
   return (
     <SafeAreaScrollView>
       <StyledPressable
-        onPress={toggleColorScheme}
-        className="flex-1 pt-3 items-center justify-center dark:bg-slate-800"
+
+        className="flex-1 items-center justify-center pt-3 dark:bg-slate-800"
       >
         <StyledText
           selectable={false}
+          onPress={toggleColorScheme}
           className="dark:text-white"
         >
           {`Try clicking me! ${colorScheme === 'dark' ? '🌙' : '🌞'}`}
@@ -53,6 +54,40 @@ export const About = () => {
               View completed tasks
             </Text></TouchableHighlight>
         </View>
+          <Text style={styles.text}>Created by [Your Name]</Text>
+          <Text style={styles.subtitle}>Features:</Text>
+          <View style={styles.feature}>
+            <Text style={styles.featureText}>Add, edit, and delete tasks</Text>
+          </View>
+          <View style={styles.feature}>
+            <Text style={styles.featureText}>Sort tasks by task, priority, due date, or label</Text>
+          </View>
+          <View style={styles.feature}>
+            <Text style={styles.featureText}>Mark tasks as completed</Text>
+          </View>
+          <View style={styles.feature}>
+            <TouchableHighlight>
+              <Text style={styles.featureText}>
+                View completed tasks
+              </Text></TouchableHighlight>
+          </View>
+          <Text style={styles.text}>Created by [Your Name]</Text>
+          <Text style={styles.subtitle}>Features:</Text>
+          <View style={styles.feature}>
+            <Text style={styles.featureText}>Add, edit, and delete tasks</Text>
+          </View>
+          <View style={styles.feature}>
+            <Text style={styles.featureText}>Sort tasks by task, priority, due date, or label</Text>
+          </View>
+          <View style={styles.feature}>
+            <Text style={styles.featureText}>Mark tasks as completed</Text>
+          </View>
+          <View style={styles.feature}>
+            <TouchableHighlight>
+              <Text style={styles.featureText}>
+                View completed tasks
+              </Text></TouchableHighlight>
+          </View>
       </View>
       </StyledPressable>
     </SafeAreaScrollView>

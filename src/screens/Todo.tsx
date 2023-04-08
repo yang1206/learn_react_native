@@ -1,14 +1,15 @@
 import { StyleSheet, Text, View } from 'react-native'
-import TaskList from '../components/TaskList'
-import TaskInput from '../components/TaskInput'
+import TaskList from '../components/Todo/TaskList'
+import TaskInput from '../components/Todo/TaskInput'
 import { navigate } from '../navigation'
+
 export default function Home() {
   return (
-    <View style={styles.container}>
-      <Text className="text-sky-500 text-[10vw]" onPress={() => { navigate('About') }}>关于</Text>
-      <TaskInput />
-      <TaskList />
-    </View>
+      <View style={styles.container}>
+        <Text className="text-xl text-sky-500" onPress={() => { navigate('About') }}>关于</Text>
+        <TaskInput />
+        <TaskList />
+      </View>
   )
 }
 

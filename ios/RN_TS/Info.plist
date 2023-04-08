@@ -54,12 +54,15 @@
 	<key>NSCameraUsageDescription</key>
   <string>$(PRODUCT_NAME) needs access to your Camera.</string>
 
-  <!-- optionally, if you want to record audio: -->
+   <!-- optionally, if you want to record audio: -->
   <key>NSMicrophoneUsageDescription</key>
   <string>$(PRODUCT_NAME) needs access to your Microphone.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Ionicons.ttf</string>
+		<string>MaterialIcons.ttf</string>
 	</array>
+	<key>DisableBuildSystemDeprecationDiagnostic</key>
+  <true/>
 </dict>
 </plist>

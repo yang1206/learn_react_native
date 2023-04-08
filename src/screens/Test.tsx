@@ -43,7 +43,7 @@ export default function Test() {
             opacity: fadeAnim,
           },
         ]}>
-          <Text className="text-sky-500 text-[20vw]">Test</Text>
+          <Text className="text-[20vw] text-sky-500">Test</Text>
         </Animated.View>
         <View style={styles.buttonRow}>
           <Button title="Fade In View" onPress={fadeIn} />

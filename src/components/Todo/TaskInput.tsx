@@ -11,8 +11,9 @@ import {
 import { format } from 'date-fns'
 import DropDownPicker from 'react-native-dropdown-picker'
 import DateTimePickerModal from 'react-native-modal-datetime-picker'
-import { useStore } from '../store'
-const TaskInput = () => {
+import { useStore } from '@/store'
+
+function TaskInput() {
   const [priority, setPriority] = useState<string>('Low')
   const [dueDate, setDueDate] = useState<string>('')
   const [label, setLabel] = useState<string>('')

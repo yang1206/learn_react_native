@@ -1,6 +1,6 @@
 import React from 'react'
 import { FlatList } from 'react-native'
-import { useStore } from '../store'
+import { useStore } from '../../store'
 import TaskItem from './TaskItem'
 
 const TaskList: React.FC = () => {

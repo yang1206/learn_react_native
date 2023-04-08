@@ -4,13 +4,13 @@ import { Text, TouchableOpacity } from 'react-native'
 import { navigate } from './helpers/navigationUtilities'
 import { HomeScreen as Home } from '@/screens'
 
-export type HomeStackParamList = {
+export interface HomeStackParamList {
   Home: undefined
 }
 
 const Stack = createNativeStackNavigator<HomeStackParamList>()
 
-export const FirstNavigator = () => {
+export function FirstNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Group
@@ -22,8 +22,8 @@ export const FirstNavigator = () => {
           headerTintColor: '#fff',
           headerShown: true,
           headerRight: () => (
-            <TouchableOpacity onPress={() => { navigate('User') }}>
-              <Text className="text-[18] text-white mr-[10]">拍照</Text>
+            <TouchableOpacity onPress={() => { navigate('Camera') }}>
+              <Text className="mr-[10] text-[18] text-white">拍照</Text>
             </TouchableOpacity>
           ),
         }}

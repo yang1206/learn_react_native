@@ -1,8 +1,9 @@
 import * as React from 'react'
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet'
 import * as storage from './utils/storage'
 import { AppNavigator, NAVIGATION_PERSISTENCE_KEY, useNavigationPersistence } from './navigation'
 
-const App = () => {
+function App() {
   const {
     initialNavigationState,
     onNavigationStateChange,
@@ -10,6 +11,7 @@ const App = () => {
   } = useNavigationPersistence(storage, NAVIGATION_PERSISTENCE_KEY)
 
   return (
+    <BottomSheetModalProvider>
       <AppNavigator
         {...(__DEV__
           ? {
@@ -18,6 +20,8 @@ const App = () => {
             }
           : {})}
       />
+    </BottomSheetModalProvider>
+
   )
 }
 

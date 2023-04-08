@@ -9,13 +9,13 @@ import { FirstNavigator } from './first-navigator'
 import { NewsScreen, UserScreen } from '@/screens'
 import { colors } from '@/ui'
 
-export type TabParamList = {
+export interface TabParamList {
   First: undefined
   News: undefined
   User: undefined
 }
 
-type TabType = {
+interface TabType {
   name: keyof TabParamList
   component: ComponentType<any>
   label: string
@@ -40,7 +40,7 @@ const tabsIcons: TabIconsType = {
   />,
 }
 
-export type TabList<T extends keyof TabParamList> = {
+export interface TabList<T extends keyof TabParamList> {
   navigation: NativeStackNavigationProp<TabParamList, T>
   route: RouteProp<TabParamList, T>
 }
@@ -63,20 +63,20 @@ const tabs: TabType[] = [
   },
 ]
 
-type BarIconType = {
+interface BarIconType {
   name: keyof TabParamList
   color: string
   size: number
 }
 
-const BarIcon = ({ color, name, size, ...reset }: BarIconType) => {
+function BarIcon({ color, name, size, ...reset }: BarIconType) {
   const Icon = tabsIcons[name]
   return <Icon color={color} size={size} {...reset} />
 }
-export const TabNavigator = () => {
+export function TabNavigator() {
   return (
     <Tab.Navigator
-      initialRouteName="News"
+      // initialRouteName="News"
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color }) => <BarIcon name={route.name} size={30} color={color} />,
         tabBarActiveTintColor: colors.primary[400],

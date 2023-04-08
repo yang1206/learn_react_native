@@ -5,8 +5,13 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-context'
 import { TabNavigator } from './tab-navigator'
 import { navigationRef } from './helpers/navigationUtilities'
-export type AppStackParamList = {
-  App: undefined
+import { AboutScreen, CameraScreen, TodoScreen } from '@/screens'
+
+export interface AppStackParamList {
+  Tab: undefined
+  Camera: undefined
+  Todo: undefined
+  About: undefined
 }
 
 export type AppStackScreenProps<T extends keyof AppStackParamList> = StackScreenProps<
@@ -25,11 +30,25 @@ const AppStack = function AppStack() {
     <Stack.Navigator
       screenOptions={{
         headerBlurEffect: isDark ? 'systemMaterialDark' : 'systemMaterialLight',
-        headerTransparent: true,
         headerShown: false,
       }}
     >
-      <Stack.Screen name="App" component={TabNavigator} />
+      <Stack.Screen name="Tab" component={TabNavigator} />
+      <Stack.Screen options={{
+        headerShown: false,
+      }} name="Camera" component={CameraScreen} />
+      <Stack.Screen options={{
+        headerShown: true,
+        headerStyle: {
+          backgroundColor: '#00b38a',
+        },
+      }} name="Todo" component={TodoScreen} />
+      <Stack.Screen options={{
+        headerShown: true,
+        headerStyle: {
+          backgroundColor: '#00b38a',
+        },
+      }} name="About" component={AboutScreen} />
     </Stack.Navigator>
   )
 }
