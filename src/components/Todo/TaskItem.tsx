@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { useStore } from '../store'
-import type { Todo } from '../store/TodoSlice'
+import { useStore } from '../../store'
+import type { Todo } from '../../store/TodoSlice'
 
 const TaskItem: React.FC<{ task: Todo }> = ({ task }) => {
   const { removeTodo } = useStore()
@@ -10,7 +10,7 @@ const TaskItem: React.FC<{ task: Todo }> = ({ task }) => {
     removeTodo(task.id)
   }
   return (
-    <View style={styles.taskItem}>
+    <View className="mb-[10] flex-col items-start justify-between rounded-lg bg-white px-[20] py-[15] shadow-black" style={styles.taskItem}>
       <Text style={styles.taskText}>{task.task}</Text>
       <Text style={styles.taskDetails}>
         Priority: {task.priority} | Due: {task.dueDate} | Label: {task.label}
@@ -24,15 +24,6 @@ const TaskItem: React.FC<{ task: Todo }> = ({ task }) => {
 
 const styles = StyleSheet.create({
   taskItem: {
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    backgroundColor: 'white',
-    borderRadius: 10,
-    paddingVertical: 15,
-    paddingHorizontal: 20,
-    marginBottom: 10,
-    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 1,

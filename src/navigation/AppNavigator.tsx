@@ -1,15 +1,16 @@
-import { PlatformColor, useColorScheme } from 'react-native'
+import { useColorScheme } from 'nativewind'
 import type { StackScreenProps } from '@react-navigation/stack'
-import type { ParamListBase } from '@react-navigation/native'
 import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native'
-
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-
-import HomeScreen from '../screens/Home'
-import AboutScreen from '../screens/About'
+import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-context'
+import { TabNavigator } from './tab-navigator'
 import { navigationRef } from './helpers/navigationUtilities'
-export interface AppStackParamList extends ParamListBase {
-  Home: undefined
+import { AboutScreen, CameraScreen, TodoScreen } from '@/screens'
+
+export interface AppStackParamList {
+  Tab: undefined
+  Camera: undefined
+  Todo: undefined
   About: undefined
 }
 
@@ -21,47 +22,50 @@ export type AppStackScreenProps<T extends keyof AppStackParamList> = StackScreen
 const Stack = createNativeStackNavigator<AppStackParamList>()
 
 const AppStack = function AppStack() {
-  const isDark = useColorScheme() === 'dark'
+  const { colorScheme } = useColorScheme()
+
+  const isDark = colorScheme === 'dark'
 
   return (
     <Stack.Navigator
       screenOptions={{
         headerBlurEffect: isDark ? 'systemMaterialDark' : 'systemMaterialLight',
-        headerTransparent: true,
+        headerShown: false,
       }}
     >
-      <Stack.Screen
-        name="Home"
-        options={{
-          headerShown: false,
-        }}
-        component={HomeScreen}
-      />
-      <Stack.Screen
-        name="About"
-        component={AboutScreen}
-      />
+      <Stack.Screen name="Tab" component={TabNavigator} />
+      <Stack.Screen options={{
+        headerShown: false,
+      }} name="Camera" component={CameraScreen} />
+      <Stack.Screen options={{
+        headerShown: true,
+        headerStyle: {
+          backgroundColor: '#00b38a',
+        },
+      }} name="Todo" component={TodoScreen} />
+      <Stack.Screen options={{
+        headerShown: true,
+        headerStyle: {
+          backgroundColor: '#00b38a',
+        },
+      }} name="About" component={AboutScreen} />
     </Stack.Navigator>
   )
 }
 
-interface NavigationProps extends Partial<React.ComponentProps<typeof NavigationContainer>> { }
-
-const theme = {
-  colors: {
-    primary: PlatformColor('systemBlue'),
-    text: PlatformColor('label'),
-  },
-}
+export interface NavigationProps extends Partial<React.ComponentProps<typeof NavigationContainer>> { }
 
 export const AppNavigator = function AppNavigator(props: NavigationProps) {
-  const colorScheme = useColorScheme()
+  const { colorScheme } = useColorScheme()
+
   return (
-    <NavigationContainer {...props}
-      ref={navigationRef}
-      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
-    >
-      <AppStack />
-    </NavigationContainer>
+    <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+      <NavigationContainer {...props}
+        ref={navigationRef}
+        theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+      >
+        <AppStack />
+      </NavigationContainer>
+    </SafeAreaProvider>
   )
 }

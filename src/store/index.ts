@@ -1,8 +1,8 @@
-import AsyncStorage from '@react-native-async-storage/async-storage'
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 import type { TodoStore } from './TodoSlice'
 import { createTodoSlice } from './TodoSlice'
+import { mmkvStorage } from '@/utils'
 
 interface IStore extends TodoStore { }
 
@@ -17,7 +17,7 @@ export const useStore = create<IStore>()(
     }),
     {
       name: 'app-storage',
-      storage: createJSONStorage(() => AsyncStorage),
+      storage: createJSONStorage(() => mmkvStorage),
     },
   ),
 )
