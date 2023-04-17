@@ -1,8 +1,31 @@
-import type { HapticFeedbackTypes } from 'react-native-haptic-feedback'
-import HapticFeedback from 'react-native-haptic-feedback'
+import Haptic from 'react-native-haptic-feedback'
 
-export function hapticFeedback(
-  type: string | HapticFeedbackTypes = 'impactLight',
-) {
-  HapticFeedback.trigger(type)
+export class HapticFeedback {
+  static impact = {
+    light: () => {
+      Haptic.trigger('impactLight')
+    },
+    medium: () => {
+      Haptic.trigger('impactMedium')
+    },
+    heavy: () => {
+      Haptic.trigger('impactHeavy')
+    },
+  }
+
+  static notification = {
+    success: () => {
+      Haptic.trigger('notificationSuccess')
+    },
+    error: () => {
+      Haptic.trigger('notificationError')
+    },
+    warning: () => {
+      Haptic.trigger('notificationWarning')
+    },
+  }
+
+  static selection() {
+    Haptic.trigger('selection')
+  }
 }

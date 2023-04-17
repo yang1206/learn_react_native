@@ -3,11 +3,13 @@ import type { StackScreenProps } from '@react-navigation/stack'
 import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-context'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import { useFlipper } from '@react-navigation/devtools'
 import { TabNavigator } from './tab-navigator'
 import { navigationRef } from './helpers/navigationUtilities'
 import { AboutScreen, CameraScreen, TodoScreen } from '@/screens'
 
-export interface AppStackParamList {
+export type AppStackParamList = {
   Tab: undefined
   Camera: undefined
   Todo: undefined
@@ -57,15 +59,17 @@ export interface NavigationProps extends Partial<React.ComponentProps<typeof Nav
 
 export const AppNavigator = function AppNavigator(props: NavigationProps) {
   const { colorScheme } = useColorScheme()
-
+  useFlipper(navigationRef)
   return (
     <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-      <NavigationContainer {...props}
-        ref={navigationRef}
-        theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
-      >
-        <AppStack />
-      </NavigationContainer>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <NavigationContainer {...props}
+          ref={navigationRef}
+          theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+        >
+          <AppStack />
+        </NavigationContainer>
+      </GestureHandlerRootView>
     </SafeAreaProvider>
   )
 }

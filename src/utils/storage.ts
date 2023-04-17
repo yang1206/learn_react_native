@@ -1,9 +1,12 @@
 import { DevSettings } from 'react-native'
 import { MMKV } from 'react-native-mmkv'
+import { initializeMMKVFlipper } from 'react-native-mmkv-flipper-plugin'
 
 export const mmkv = new MMKV({
   id: 'default',
 })
+if (__DEV__)
+  initializeMMKVFlipper({ default: mmkv })
 
 export function set(key: string, value: boolean | string | number | Uint8Array | object) {
   mmkv.set(key, typeof value === 'object' ? JSON.stringify(value) : value)
@@ -75,15 +78,14 @@ if (__DEV__) {
   })
 }
 
-export interface ZustandStorage {
+export interface clientStorage {
   getItem: (name: string) => string | null | Promise<string | null>
   setItem: (name: string, value: string) => void | Promise<void>
   removeItem: (name: string) => void | Promise<void>
 }
 
-const storage = new MMKV()
-export const mmkvStorage: ZustandStorage = {
-  setItem: (key, value) => storage.set(key, value),
-  getItem: key => storage.getString(key) || null,
-  removeItem: key => storage.delete(key),
+export const mmkvStorage: clientStorage = {
+  setItem: (key, value) => set(key, value),
+  getItem: key => get(key) || null,
+  removeItem: key => remove(key),
 }

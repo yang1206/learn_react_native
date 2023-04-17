@@ -9,7 +9,7 @@ import { FirstNavigator } from './first-navigator'
 import { NewsScreen, UserScreen } from '@/screens'
 import { colors } from '@/ui'
 
-export interface TabParamList {
+export type TabParamList = {
   First: undefined
   News: undefined
   User: undefined
