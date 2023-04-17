@@ -4,7 +4,7 @@ import { Text, TouchableOpacity } from 'react-native'
 import { navigate } from './helpers/navigationUtilities'
 import { HomeScreen as Home } from '@/screens'
 
-export interface HomeStackParamList {
+export type HomeStackParamList = {
   Home: undefined
 }
 
@@ -18,6 +18,7 @@ export function FirstNavigator() {
           // title: 'Home',
           headerStyle: {
             backgroundColor: '#00b38a',
+
           },
           headerTintColor: '#fff',
           headerShown: true,
@@ -28,7 +29,10 @@ export function FirstNavigator() {
           ),
         }}
       >
-        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen options={{
+          title: '首页',
+          headerShadowVisible: false,
+        }} name="Home" component={Home} />
       </Stack.Group>
 
     </Stack.Navigator>

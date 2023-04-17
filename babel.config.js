@@ -11,6 +11,8 @@ module.exports = {
       },
     ],
     'react-native-reanimated/plugin',
-    'nativewind/babel',
+    ['nativewind/babel',
+      // { mode: 'compileOnly' },
+    ],
   ],
 }

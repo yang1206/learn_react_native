@@ -5,4 +5,6 @@
  *
  * https://reactnative.dev/docs/security#storing-sensitive-info
  */
-export default {}
+export default {
+  API_URL: 'https://devapi.qweather.com/v7',
+}

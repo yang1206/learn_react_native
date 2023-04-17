@@ -1,5 +1,5 @@
 import type { ScrollViewProps, ViewStyle } from 'react-native'
-import { ScrollView } from 'react-native'
+import { ScrollView } from 'react-native-gesture-handler'
 import type { SafeAreaViewProps } from 'react-native-safe-area-context'
 import { SafeAreaView } from 'react-native-safe-area-context'
 

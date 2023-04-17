@@ -27,12 +27,13 @@ import {
   RectButton,
   TapGestureHandler,
 } from 'react-native-gesture-handler'
+import { useNavigation } from '@react-navigation/native'
 import PhotoPreview from './PhotoPreview'
 
 import ImageViewer from './ImageViewer'
 import CircleFocus from './CircleFocus'
 import { useDark } from '@/hooks'
-import { hapticFeedback } from '@/utils/hapticFeedback'
+import { HapticFeedback } from '@/utils/hapticFeedback'
 import { goBack } from '@/navigation'
 
 const ReanimatedCamera = Animated.createAnimatedComponent(CameraVision)
@@ -42,12 +43,12 @@ Animated.addWhitelistedNativeProps({
 })
 const MAX_FRAME_PROCESSOR_FPS = 3
 function Camera() {
-  const camera = useRef<CameraVision>(null)
-  const isHolding = useSharedValue(false)
+  const camera = useRef<CameraVision>(null) // 相机
+  const isHolding = useSharedValue(false) // 是否正在触摸屏幕
   const isPageActive = useSharedValue(true)
-  const [frameProcessorFps, setFrameProcessorFps] = useState(3)
-  const [torchActive, setTorchActive] = useState(false)
-  const [frontCamera, setFrontCamera] = useState(false)
+  const [frameProcessorFps, setFrameProcessorFps] = useState(3) // 帧率
+  const [torchActive, setTorchActive] = useState(false) // 闪光灯开关
+  const [frontCamera, setFrontCamera] = useState(false) // 前后摄像头
   const [permissionResult, setPermissionResult]
     = useState<CameraPermissionRequestResult>('denied')
   const [photos, setPhotos] = useState<PhotoFile[]>([])
@@ -100,10 +101,22 @@ function Camera() {
 
     getPermission()
   }, [])
+  const navigation = useNavigation()
 
-  const onTapBegin = useWorkletCallback(() => {
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('blur', () => {
+      if (torchActive)
+        toggleTorch()
+    })
+
+    return () => {
+      unsubscribe()
+    }
+  }, [navigation])
+
+  const onTapBegin = useWorkletCallback(() => { // 开始触摸屏幕时间
     isHolding.value = true
-    runOnJS(hapticFeedback)('selection')
+    runOnJS(HapticFeedback.impact.light)
   }, [isHolding])
   const onTapEnd = useWorkletCallback(() => {
     isHolding.value = false
@@ -130,7 +143,7 @@ function Camera() {
 
   const animatedProps = useAnimatedProps<Partial<CameraProps>>(
     () => ({ zoom: zoom.value, isActive: !isHolding.value && isPageActive.value }),
-    [zoom, isPageActive, isHolding, isPageActive],
+    [zoom, isPageActive, isHolding],
   )
 
   const gestureTapToFocus = async (

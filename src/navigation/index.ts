@@ -1,2 +1,2 @@
 export * from './helpers/navigationUtilities'
-export * from './AppNavigator'
+export * from './app-navigator'
