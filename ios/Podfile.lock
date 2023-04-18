@@ -12,6 +12,9 @@ PODS:
     - React-Core
     - React-RCTAppDelegate
     - ReactCommon/turbomodule/core
+  - EXSplashScreen (0.18.1):
+    - ExpoModulesCore
+    - React-Core
   - FBLazyVector (0.71.6)
   - FBReactNativeSpec (0.71.6):
     - RCT-Folly (= 2021.07.22.00)
@@ -528,6 +531,7 @@ DEPENDENCIES:
   - "Expo (from `../node_modules/.pnpm/expo@48.0.11_@babel+core@7.21.4/node_modules/expo`)"
   - "ExpoLinearGradient (from `../node_modules/.pnpm/expo-linear-gradient@12.1.2_expo@48.0.11/node_modules/expo-linear-gradient/ios`)"
   - "ExpoModulesCore (from `../node_modules/.pnpm/expo-modules-core@1.2.6/node_modules/expo-modules-core`)"
+  - "EXSplashScreen (from `../node_modules/.pnpm/expo-splash-screen@0.18.1_expo-modules-autolinking@1.2.0_expo@48.0.11/node_modules/expo-splash-screen/ios`)"
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/React/FBReactNativeSpec`)
   - Flipper (= 0.125.0)
@@ -642,6 +646,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/.pnpm/expo-linear-gradient@12.1.2_expo@48.0.11/node_modules/expo-linear-gradient/ios"
   ExpoModulesCore:
     :path: "../node_modules/.pnpm/expo-modules-core@1.2.6/node_modules/expo-modules-core"
+  EXSplashScreen:
+    :path: "../node_modules/.pnpm/expo-splash-screen@0.18.1_expo-modules-autolinking@1.2.0_expo@48.0.11/node_modules/expo-splash-screen/ios"
   FBLazyVector:
     :path: "../node_modules/react-native/Libraries/FBLazyVector"
   FBReactNativeSpec:
@@ -755,6 +761,7 @@ SPEC CHECKSUMS:
   Expo: 81418098ffb16914b2e190f54e06db923248e4a1
   ExpoLinearGradient: 8eaab76b7f55c612ed8348c8be8c2a18a9b4529f
   ExpoModulesCore: 6e0259511f4c4341b6b8357db393624df2280828
+  EXSplashScreen: cd7fb052dff5ba8311d5c2455ecbebffe1b7a8ca
   FBLazyVector: a83ceaa8a8581003a623facdb3c44f6d4f342ac5
   FBReactNativeSpec: 9281cf8d3131270737b7080400354c4ec306883d
   Flipper: 26fc4b7382499f1281eb8cb921e5c3ad6de91fe0

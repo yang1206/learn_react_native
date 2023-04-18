@@ -179,7 +179,7 @@ function Camera() {
           enabled={true}
           minPointers={1}
           maxDurationMs={999999}
-        // onHandlerStateChange={gestureTapToFocus}
+        onHandlerStateChange={gestureTapToFocus}
         >
 
           {/* <AnimatedStatusBar

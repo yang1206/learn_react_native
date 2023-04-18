@@ -1,4 +1,4 @@
-import { Alert, Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Alert, Dimensions, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import Geolocation from '@react-native-community/geolocation'
@@ -100,10 +100,10 @@ export default function Home() {
       <Swiper />
       <View className="flex-1 flex justify-center">
         <Text className="text-[18px] ml-5">
-          {cityData?.location[0].country} {cityData?.location[0].adm1} {cityData.location[0].adm2}
+          {cityData?.location[0].country} {cityData?.location[0].adm1} {cityData?.location[0].adm2}
         </Text>
       </View>
-      <View className="flex-1 w-full pr-10 h-[80]  flex flex-row justify-between items-center flex-wrap ml-5">
+      <View className="flex-1 mt-2 w-full pr-10 h-[80]  flex flex-row justify-between items-center flex-wrap ml-5">
         <FlashList data={indicesData?.daily}
           nestedScrollEnabled={true}
           renderItem={({ item }) => { return <IndicesItem item={item} /> }}
@@ -114,43 +114,35 @@ export default function Home() {
 
         </FlashList>
       </View>
-      <LinearGradient
-        // Background Linear Gradient
-        colors={['rgba(0,0,0,0.8)', 'transparent']}
-        style={styles.background}
-      />
-      <LinearGradient
-        // Button Linear Gradient
-        colors={['#4c669f', '#3b5998', '#192f6a']}
-        style={styles.button}>
-        <Text style={styles.text}>Sign in with Facebook</Text>
-      </LinearGradient>
+      <View className="flex flex-col justify-between items-center flex-wrap mx-[10px]">
+        {
+          threeData?.daily.map((item, index) => {
+            return (
+              <LinearGradient
+                key={index}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+                colors={['#ddd', '#333']}
+                className="items-center justify-between rounded-2xl w-full mt-[10px]"
+                >
+                <Text className="text-[20] text-[#eee] mt-[10]">
+                  {item.fxDate}
+                </Text>
+                <View className="flex-row items-center mb-[10] justify-between " style={{ width: Dimensions.get('window').width - 40 }}>
+                  <View className="flex-row justify-around">
+                    <Text>{item.textDay} {item.tempMax}℃</Text>
+
+                  </View>
+                  <View className="flex-row justify-around" >
+                    <Text>{item.tempMin}℃ {item.textNight}</Text>
+                  </View>
+                </View>
+              </LinearGradient>
+            )
+          })
+        }
+
+      </View>
     </SafeAreaScrollView>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'orange',
-  },
-  background: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
-    height: 300,
-  },
-  button: {
-    padding: 15,
-    alignItems: 'center',
-    borderRadius: 5,
-  },
-  text: {
-    backgroundColor: 'transparent',
-    fontSize: 15,
-    color: '#fff',
-  },
-})

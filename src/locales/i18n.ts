@@ -1,5 +1,5 @@
 import i18n from 'i18next'
-
+import { I18nManager } from 'react-native'
 import { SupportedLanguage } from './constants'
 import { preferredLocale } from './helpers/preferredLocale'
 import type { Translations } from './en'
@@ -27,7 +27,10 @@ i18n.init({
     },
   },
 })
+export const isRTL: boolean = i18n.dir() === 'rtl'
 
+I18nManager.allowRTL(isRTL)
+I18nManager.forceRTL(isRTL)
 export { i18n }
 
 /**
