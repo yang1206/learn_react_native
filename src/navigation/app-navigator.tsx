@@ -7,13 +7,19 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { useFlipper } from '@react-navigation/devtools'
 import { TabNavigator } from './tab-navigator'
 import { navigationRef } from './helpers/navigationUtilities'
-import { AboutScreen, CameraScreen, TodoScreen } from '@/screens'
+import { AboutScreen, CameraScreen, TestScreen, TodoScreen } from '@/screens'
+import { MediaPage } from '@/components/Camera/MediaPage'
 
 export type AppStackParamList = {
   Tab: undefined
   Camera: undefined
   Todo: undefined
   About: undefined
+  Test: undefined
+  MediaPage: {
+    path: string
+    type: 'video' | 'photo'
+  }
 }
 
 export type AppStackScreenProps<T extends keyof AppStackParamList> = StackScreenProps<
@@ -39,6 +45,12 @@ const AppStack = function AppStack() {
       <Stack.Screen options={{
         headerShown: false,
       }} name="Camera" component={CameraScreen} />
+      <Stack.Screen options={{
+        headerShown: false,
+      }} name="Test" component={TestScreen} />
+      <Stack.Screen options={{
+        headerShown: false,
+      }} name="MediaPage" component={MediaPage} />
       <Stack.Screen options={{
         headerShown: true,
         headerStyle: {

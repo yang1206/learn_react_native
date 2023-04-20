@@ -8,7 +8,12 @@ const plugins = [
       },
     },
   ],
-  'react-native-reanimated/plugin',
+  [
+    'react-native-reanimated/plugin',
+    {
+      globals: ['__scanCodes'],
+    },
+  ],
   ['nativewind/babel',
     // { mode: 'compileOnly' },
   ],

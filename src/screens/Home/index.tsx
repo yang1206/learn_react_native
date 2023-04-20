@@ -66,6 +66,9 @@ export default function Home() {
   const menuClick = (id: number) => {
     if (id === 3)
       navigate('Todo')
+
+    else if (id === 1)
+      navigate('Test')
   }
   const IndicesItem: React.FC<{ item: any }> = ({ item }: { item: any }) => {
     return (
@@ -109,7 +112,7 @@ export default function Home() {
           renderItem={({ item }) => { return <IndicesItem item={item} /> }}
           horizontal={true}
           estimatedItemSize={312}
-          keyExtractor={(item: any) => item.type}
+          keyExtractor={(item: any, index) => item.name}
         >
 
         </FlashList>
