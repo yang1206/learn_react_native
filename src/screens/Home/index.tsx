@@ -106,7 +106,7 @@ export default function Home() {
           {cityData?.location[0].country} {cityData?.location[0].adm1} {cityData?.location[0].adm2}
         </Text>
       </View>
-      <View className="flex-1 mt-2 w-full pr-10 h-[80]  flex flex-row justify-between items-center flex-wrap ml-5">
+      <View className="flex-1 mt-2 w-full pr-10 h-[80] min-h-[80] min-w-[300]  flex flex-row justify-between items-center flex-wrap ml-5">
         <FlashList data={indicesData?.daily}
           nestedScrollEnabled={true}
           renderItem={({ item }) => { return <IndicesItem item={item} /> }}

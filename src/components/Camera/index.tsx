@@ -207,7 +207,7 @@ function Camera() {
     // })
     .onChange((e) => {
       'worklet'
-      zoom.value *= e.scaleChange * savaZoom.value
+      zoom.value *= e.scaleChange
     })
     .onEnd(() => {
       savaZoom.value = zoom.value
@@ -302,6 +302,7 @@ function Camera() {
             <Ionicons name={enableNightMode ? 'moon' : 'moon-outline'} color="white" size={24} />
           </TouchableOpacity>
         )}
+        <Text>{zoom.value}</Text>
       </View>
       <View style={{ ...styles.ButtonsLeft, top }}>
         <RectButton style={styles.ButtonFloating} onPress={() => { goBack() }}>

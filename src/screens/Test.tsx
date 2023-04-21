@@ -207,13 +207,13 @@ function Filter(props: {
   filter: string
   selected: Animated.SharedValue<number>
 }) {
-  const window = useWindowDimensions()
+  const Alert = useWindowDimensions()
   const style = useAnimatedStyle(() => {
     return {
       transform: [
         {
           translateX:
-            window.width / 2
+            Alert.width / 2
             - CAPTURE_BUTTON_RADIUS
             - CAPTURE_BUTTON_RADIUS * 2 * props.selected.value,
         },

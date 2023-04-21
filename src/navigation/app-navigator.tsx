@@ -7,7 +7,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { useFlipper } from '@react-navigation/devtools'
 import { TabNavigator } from './tab-navigator'
 import { navigationRef } from './helpers/navigationUtilities'
-import { AboutScreen, CameraScreen, TestScreen, TodoScreen } from '@/screens'
+import { AboutScreen, CameraScreen, LoginScreen, TestScreen, TodoScreen } from '@/screens'
 import { MediaPage } from '@/components/Camera/MediaPage'
 
 export type AppStackParamList = {
@@ -16,6 +16,7 @@ export type AppStackParamList = {
   Todo: undefined
   About: undefined
   Test: undefined
+  Login: undefined
   MediaPage: {
     path: string
     type: 'video' | 'photo'
@@ -48,6 +49,9 @@ const AppStack = function AppStack() {
       <Stack.Screen options={{
         headerShown: false,
       }} name="Test" component={TestScreen} />
+      <Stack.Screen options={{
+        headerShown: false,
+      }} name="Login" component={LoginScreen} />
       <Stack.Screen options={{
         headerShown: false,
       }} name="MediaPage" component={MediaPage} />
