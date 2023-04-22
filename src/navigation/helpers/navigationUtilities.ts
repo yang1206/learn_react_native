@@ -128,12 +128,12 @@ export function useNavigationPersistence(storage: Storage, persistenceKey: strin
     routeNameRef.current = currentRouteName
 
     // Persist state to storage
-    storage.set(persistenceKey, state)
+    storage.setItem(persistenceKey, state)
   }
 
   const restoreState = async () => {
     try {
-      const state = await storage.get(persistenceKey, 'object')
+      const state = await storage.getItem(persistenceKey, 'object')
       if (state)
         setInitialNavigationState(state)
     }

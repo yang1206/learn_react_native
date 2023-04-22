@@ -7,8 +7,10 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { useFlipper } from '@react-navigation/devtools'
 import { TabNavigator } from './tab-navigator'
 import { navigationRef } from './helpers/navigationUtilities'
-import { AboutScreen, CameraScreen, LoginScreen, TestScreen, TodoScreen } from '@/screens'
+import { AuthNavigator } from './auth-navigator'
+import { AboutScreen, CameraScreen, TestScreen, TodoScreen } from '@/screens'
 import { MediaPage } from '@/components/Camera/MediaPage'
+import { useAuthStore } from '@/store'
 
 export type AppStackParamList = {
   Tab: undefined
@@ -16,7 +18,7 @@ export type AppStackParamList = {
   Todo: undefined
   About: undefined
   Test: undefined
-  Login: undefined
+  Auth: undefined
   MediaPage: {
     path: string
     type: 'video' | 'photo'
@@ -32,7 +34,7 @@ const Stack = createNativeStackNavigator<AppStackParamList>()
 
 const AppStack = function AppStack() {
   const { colorScheme } = useColorScheme()
-
+  const { isAuth } = useAuthStore()
   const isDark = colorScheme === 'dark'
 
   return (
@@ -40,33 +42,43 @@ const AppStack = function AppStack() {
       screenOptions={{
         headerBlurEffect: isDark ? 'systemMaterialDark' : 'systemMaterialLight',
         headerShown: false,
+        gestureEnabled: false,
+        animation: 'none',
       }}
     >
-      <Stack.Screen name="Tab" component={TabNavigator} />
-      <Stack.Screen options={{
-        headerShown: false,
-      }} name="Camera" component={CameraScreen} />
-      <Stack.Screen options={{
-        headerShown: false,
-      }} name="Test" component={TestScreen} />
-      <Stack.Screen options={{
-        headerShown: false,
-      }} name="Login" component={LoginScreen} />
-      <Stack.Screen options={{
-        headerShown: false,
-      }} name="MediaPage" component={MediaPage} />
-      <Stack.Screen options={{
-        headerShown: true,
-        headerStyle: {
-          backgroundColor: '#00b38a',
-        },
-      }} name="Todo" component={TodoScreen} />
-      <Stack.Screen options={{
-        headerShown: true,
-        headerStyle: {
-          backgroundColor: '#00b38a',
-        },
-      }} name="About" component={AboutScreen} />
+      {
+        !isAuth
+          ? (
+          <Stack.Screen name="Auth" component={AuthNavigator} />
+            )
+          : (
+            <>
+              <Stack.Screen name="Tab" component={TabNavigator} />
+              <Stack.Screen options={{
+                headerShown: false,
+              }} name="Camera" component={CameraScreen} />
+              <Stack.Screen options={{
+                headerShown: false,
+              }} name="Test" component={TestScreen} />
+              <Stack.Screen options={{
+                headerShown: false,
+              }} name="MediaPage" component={MediaPage} />
+              <Stack.Screen options={{
+                headerShown: true,
+                headerStyle: {
+                  backgroundColor: '#00b38a',
+                },
+              }} name="Todo" component={TodoScreen} />
+              <Stack.Screen options={{
+                headerShown: true,
+                headerStyle: {
+                  backgroundColor: '#00b38a',
+                },
+              }} name="About" component={AboutScreen} />
+            </>
+            )
+      }
+
     </Stack.Navigator>
   )
 }

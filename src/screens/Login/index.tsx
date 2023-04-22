@@ -14,6 +14,7 @@ import { BlurView } from '@react-native-community/blur'
 import TopSection from './TopSection'
 import BottomForm from './BottomForm'
 
+// 适应不同屏幕高度
 function BottomUpAnimation() {
   const translateY = useSharedValue(0)
   const scale = useSharedValue(1)
@@ -78,7 +79,7 @@ function BottomUpAnimation() {
                 hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
               >
                 <Animated.View style={[styles.animatedView, animatedStyle]}>
-                  <View style={{ backgroundColor: '#fff', position: 'absolute', left: 0, right: 0, bottom: -100, top: 0 }} />
+                  <View style={styles.card} />
                   <BottomForm translateY={translateY} />
                 </Animated.View>
               </PanGestureHandler>
@@ -111,6 +112,14 @@ const styles = StyleSheet.create({
   },
   bottom: {
     flex: 1,
+  },
+  card: {
+    backgroundColor: '#fff',
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: -100,
+    top: 0,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
   },
@@ -123,12 +132,9 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    height: 500,
+    height: '100%', // 修改高度为 100%
     // backgroundColor: '#fff',
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
     paddingHorizontal: 20,
-    paddingTop: 20,
   },
 })
 

@@ -4,8 +4,11 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import { SafeAreaScrollView } from '@/components/SafeAreaScrollView'
 import { Image, Text, TouchableOpacity, View } from '@/ui'
 import { navigate } from '@/navigation'
+import { useAuthStore } from '@/store'
 
 const User: React.FC = () => {
+  const { logout } = useAuthStore()
+
   return (
     <SafeAreaScrollView contentContainerStyle={styles.container}>
       <View className="flex-row justify-center" style={styles.line}>
@@ -29,16 +32,7 @@ const User: React.FC = () => {
           <Ionicons name={'chevron-forward-outline'} size={20} color={'#bbb'}></Ionicons>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => { navigate('Login') }}>
-        <View className="flex-row justify-between px-[20] items-center  py-[10]" style={styles.line}>
-          <View className="flex-row items-center gap-1">
-            <Ionicons name={'settings-outline'} size={20} color={'#22d'}></Ionicons>
-            <Text className="text-[18px]">登录</Text>
-          </View>
-          <Ionicons name={'chevron-forward-outline'} size={20} color={'#bbb'}></Ionicons>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => { Alert.alert('设置') }}>
+      <TouchableOpacity onPress={() => { logout() }}>
         <View className="flex-row justify-between px-[20] items-center  py-[10]" style={styles.line}>
           <View className="flex-row items-center gap-1">
             <Ionicons name={'settings-outline'} size={20} color={'#22d'}></Ionicons>

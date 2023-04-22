@@ -9,7 +9,7 @@ import StatusBarComp from '@/components/StatusBarComp'
 import { useDark } from '@/hooks'
 import { navigate } from '@/navigation'
 import { SafeAreaScrollView } from '@/components/SafeAreaScrollView'
-import { set } from '@/utils'
+import { setItem } from '@/utils'
 import { ues3d, uesCity, uesIndices } from '@/api'
 
 export default function Home() {
@@ -18,7 +18,7 @@ export default function Home() {
   useEffect(() => {
     Geolocation.getCurrentPosition(
       (res) => {
-        set('location', res)
+        setItem('location', res)
         setLocation(`${res.coords.longitude},${res.coords.latitude}`)
       },
       (error) => {

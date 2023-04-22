@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import type Animated from 'react-native-reanimated'
 import { withTiming } from 'react-native-reanimated'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 import { ControlledInput } from '@/ui'
+import { useAuthStore } from '@/store'
 
 interface BottomFormProps {
   translateY: Animated.SharedValue<number>
 }
 function BottomForm({ translateY }: BottomFormProps) {
   const [formType, setFormType] = useState<'login' | 'register'>('login')
+  const [showPassword, setShowPassword] = useState(false)
+  const { login } = useAuthStore()
   useEffect(() => {
     translateY.value = 300
     translateY.value = withTiming(0, { duration: 1000 })
@@ -44,7 +48,10 @@ function BottomForm({ translateY }: BottomFormProps) {
     // 切换表单类型
     setFormType(formType === 'login' ? 'register' : 'login')
   }
-
+  function onSubmit(data: string) {
+    if (formType === 'login')
+      login(data)
+  }
   return (
     <View style={styles.formContainer}>
       {/* 切换表单类型 */}
@@ -61,14 +68,19 @@ function BottomForm({ translateY }: BottomFormProps) {
         keyboardType="email-address"
         placeholder="请输入邮箱"
       />
-      <ControlledInput
-        testID="password-input"
-        control={control}
-        name="password"
-        label="密码"
-        secureTextEntry={true}
-        placeholder="请输入密码"
-      />
+      <View className="relative">
+        <ControlledInput
+          testID="password-input"
+          control={control}
+          name="password"
+          label="密码"
+          secureTextEntry={!showPassword}
+          placeholder="请输入密码"
+        />
+        <TouchableOpacity className=" absolute right-5 top-[40%]" onPress={() => setShowPassword(!showPassword)}>
+          <Ionicons name={showPassword ? 'eye-off-outline' : 'eye-outline'} size={24} color="#ccc" />
+        </TouchableOpacity>
+      </View>
       {formType === 'register' && (
         <>
           <ControlledInput
@@ -85,7 +97,7 @@ function BottomForm({ translateY }: BottomFormProps) {
       {/* 提交按钮 */}
       <TouchableOpacity
         style={[styles.button, { backgroundColor: formType === 'login' ? '#6c63ff' : '#ff69b4' }]}
-        onPress={handleSubmit(data => Alert.alert(JSON.stringify(data)))}
+        onPress={handleSubmit(data => onSubmit(JSON.stringify(data)))}
       >
         <Text style={styles.buttonText}>{formType === 'login' ? '登录' : '注册'}</Text>
       </TouchableOpacity>
