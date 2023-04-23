@@ -1,76 +1,72 @@
 import React from 'react'
-import { Dimensions, StyleSheet, View } from 'react-native'
-import type { PanGestureHandlerGestureEvent } from 'react-native-gesture-handler'
-import {
-  PanGestureHandler,
-} from 'react-native-gesture-handler'
-import Animated, {
-  useAnimatedGestureHandler,
-  useAnimatedStyle,
-  useSharedValue,
-  withSpring,
-} from 'react-native-reanimated'
+import { Alert, StyleSheet } from 'react-native'
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import { SafeAreaScrollView } from '@/components/SafeAreaScrollView'
+import { Image, Text, TouchableOpacity, View } from '@/ui'
+import { navigate } from '@/navigation'
+import { useAuthStore } from '@/store'
 
-const { width, height } = Dimensions.get('window')
-
-const AppleMusicAnimation: React.FC = () => {
-  const translateY = useSharedValue(0)
-
-  const gestureHandler = useAnimatedGestureHandler<
-    PanGestureHandlerGestureEvent,
-    { startY: number }
-  >({
-    onStart: (event, context) => {
-      context.startY = translateY.value
-    },
-    onActive: (event, context) => {
-      translateY.value = context.startY + event.translationY
-    },
-    onEnd: () => {
-      translateY.value = withSpring(0)
-    },
-  })
-
-  const animatedStyles = useAnimatedStyle(() => {
-    return {
-      transform: [
-        {
-          translateY: translateY.value,
-        },
-      ],
-    }
-  })
+const User: React.FC = () => {
+  const { logout } = useAuthStore()
 
   return (
-    <View style={styles.container}>
-      <PanGestureHandler onGestureEvent={gestureHandler}>
-        <Animated.View style={[styles.card, animatedStyles]}>
-          {/* Your Content Here */}
-        </Animated.View>
-      </PanGestureHandler>
-    </View>
+    <SafeAreaScrollView contentContainerStyle={styles.container}>
+      <View className="flex-row justify-center" style={styles.line}>
+        <Image className="w-[80] h-[80] my-[10] rounded-full" source={{ uri: 'https://s2.loli.net/2022/05/12/gxRJwmb1ClQPoGe.jpg' }}></Image>
+      </View>
+      <TouchableOpacity onPress={() => { navigate('About') }}>
+        <View className="flex-row justify-between px-[20] items-center  py-[10]" style={styles.line}>
+          <View className="flex-row items-center gap-1">
+            <Ionicons name={'information-circle-outline'} size={20} color={'#2d3'}></Ionicons>
+            <Text className="text-[18px]">关于</Text>
+          </View>
+          <Ionicons name={'chevron-forward-outline'} size={20} color={'#bbb'}></Ionicons>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => { Alert.alert('设置') }}>
+        <View className="flex-row justify-between px-[20] items-center  py-[10]" style={styles.line}>
+          <View className="flex-row items-center gap-1">
+            <Ionicons name={'settings-outline'} size={20} color={'#22d'}></Ionicons>
+            <Text className="text-[18px]">设置</Text>
+          </View>
+          <Ionicons name={'chevron-forward-outline'} size={20} color={'#bbb'}></Ionicons>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => {
+        Alert.alert(
+          '警告',
+          '确认要退出登录吗？',
+          [
+            {
+              text: '取消',
+              onPress: () => Alert.alert('Cancel Pressed'),
+              style: 'cancel',
+            },
+            { text: '确认', onPress: () => logout() },
+          ],
+        )
+      }}>
+        <View className="flex-row justify-between px-[20] items-center  py-[10]" style={styles.line}>
+          <View className="flex-row items-center gap-1">
+            <Ionicons name={'log-out-outline'} size={20} color={'#22d'}></Ionicons>
+            <Text className="text-[18px]">退出</Text>
+          </View>
+          <Ionicons name={'chevron-forward-outline'} size={20} color={'#bbb'}></Ionicons>
+        </View>
+      </TouchableOpacity>
+    </SafeAreaScrollView>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'flex-start',
   },
-  card: {
-    width: width * 0.9,
-    height: height * 0.7,
-    backgroundColor: '#FFF',
-    borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    elevation: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.3,
-    shadowRadius: 5,
+  line: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
   },
+
 })
 
-export default AppleMusicAnimation
+export default User

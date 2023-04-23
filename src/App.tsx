@@ -4,8 +4,9 @@ import type { AppStateStatus } from 'react-native'
 import { Platform } from 'react-native'
 import { focusManager } from '@tanstack/react-query'
 import * as storage from './utils/storage'
-import { AppNavigator, NAVIGATION_PERSISTENCE_KEY, useNavigationPersistence } from './navigation'
+import { NAVIGATION_PERSISTENCE_KEY, useNavigationPersistence } from './navigation'
 import { useAppState, useOnlineManager } from './hooks'
+import { AppNavigator } from '@/navigation/app-navigator'
 import { APIProvider } from '@/api'
 
 function onAppStateChange(status: AppStateStatus) {

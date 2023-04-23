@@ -11,5 +11,8 @@
     "ios/Pods/Headers/Private/RCT-Folly/folly/lang",
     "ios/Pods/Headers/Public/Flipper-Folly/folly/lang",
     "ios/Pods/Headers/Public/RCT-Folly/folly/lang"
+  ],
+  "cSpell.words": [
+    "Swiper"
   ]
 }

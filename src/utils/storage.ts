@@ -8,7 +8,7 @@ export const mmkv = new MMKV({
 if (__DEV__)
   initializeMMKVFlipper({ default: mmkv })
 
-export function set(key: string, value: boolean | string | number | Uint8Array | object) {
+export function setItem(key: string, value: boolean | string | number | Uint8Array | object) {
   mmkv.set(key, typeof value === 'object' ? JSON.stringify(value) : value)
 }
 
@@ -16,7 +16,7 @@ export function setObject(key: string, value: object) {
   mmkv.set(key, JSON.stringify(value))
 }
 
-export function get(key: string, type: 'number' | 'string' | 'boolean' | 'object' = 'string') {
+export function getItem(key: string, type: 'number' | 'string' | 'boolean' | 'object' = 'string') {
   switch (type) {
     case 'boolean':
       return mmkv.getBoolean(key)
@@ -29,7 +29,7 @@ export function get(key: string, type: 'number' | 'string' | 'boolean' | 'object
   }
 }
 
-export function remove(key: string) {
+export function removeItem(key: string) {
   mmkv.delete(key)
 }
 
@@ -85,7 +85,7 @@ export interface clientStorage {
 }
 
 export const mmkvStorage: clientStorage = {
-  setItem: (key, value) => set(key, value),
-  getItem: key => get(key) || null,
-  removeItem: key => remove(key),
+  setItem: (key, value) => setItem(key, value),
+  getItem: key => getItem(key) || null,
+  removeItem: key => removeItem(key),
 }

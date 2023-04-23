@@ -5,6 +5,7 @@ import NewsScreen from './News'
 import UserScreen from './User'
 import CameraScreen from './Camera'
 import TodoScreen from './Todo'
+import LoginScreen from './Login'
 
 export {
   HomeScreen,
@@ -14,4 +15,5 @@ export {
   UserScreen,
   CameraScreen,
   TodoScreen,
+  LoginScreen,
 }

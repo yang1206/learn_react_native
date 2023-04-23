@@ -4,6 +4,7 @@ import type { TodoStore } from './TodoSlice'
 import { createTodoSlice } from './TodoSlice'
 import { mmkvStorage } from '@/utils'
 
+export * from './AuthSlice'
 interface IStore extends TodoStore { }
 
 /**

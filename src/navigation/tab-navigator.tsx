@@ -59,7 +59,7 @@ const tabs: TabType[] = [
   {
     name: 'User',
     component: UserScreen,
-    label: 'User',
+    label: '个人中心',
   },
 ]
 

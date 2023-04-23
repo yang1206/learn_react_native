@@ -3,12 +3,13 @@ import React, { useEffect, useState } from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import Geolocation from '@react-native-community/geolocation'
 import { FlashList } from '@shopify/flash-list'
+import { LinearGradient } from 'expo-linear-gradient'
 import Swiper from './components/Swiper'
 import StatusBarComp from '@/components/StatusBarComp'
 import { useDark } from '@/hooks'
 import { navigate } from '@/navigation'
 import { SafeAreaScrollView } from '@/components/SafeAreaScrollView'
-import { set } from '@/utils'
+import { setItem } from '@/utils'
 import { ues3d, uesCity, uesIndices } from '@/api'
 
 export default function Home() {
@@ -17,7 +18,7 @@ export default function Home() {
   useEffect(() => {
     Geolocation.getCurrentPosition(
       (res) => {
-        set('location', res)
+        setItem('location', res)
         setLocation(`${res.coords.longitude},${res.coords.latitude}`)
       },
       (error) => {
@@ -65,6 +66,9 @@ export default function Home() {
   const menuClick = (id: number) => {
     if (id === 3)
       navigate('Todo')
+
+    else if (id === 1)
+      navigate('Test')
   }
   const IndicesItem: React.FC<{ item: any }> = ({ item }: { item: any }) => {
     return (
@@ -99,19 +103,48 @@ export default function Home() {
       <Swiper />
       <View className="flex-1 flex justify-center">
         <Text className="text-[18px] ml-5">
-          {cityData?.location[0].country} {cityData?.location[0].adm1} {cityData.location[0].adm2}
+          {cityData?.location[0].country} {cityData?.location[0].adm1} {cityData?.location[0].adm2}
         </Text>
       </View>
-      <View className="flex-1 w-full pr-10 h-[80]  flex flex-row justify-between items-center flex-wrap ml-5">
+      <View className="flex-1 mt-2 w-full pr-10 h-[80] min-h-[80] min-w-[300]  flex flex-row justify-between items-center flex-wrap ml-5">
         <FlashList data={indicesData?.daily}
           nestedScrollEnabled={true}
           renderItem={({ item }) => { return <IndicesItem item={item} /> }}
           horizontal={true}
           estimatedItemSize={312}
-          keyExtractor={(item: any) => item.type}
+          keyExtractor={(item: any, index) => item.name}
         >
 
         </FlashList>
+      </View>
+      <View className="flex flex-col justify-between items-center flex-wrap mx-[10px]">
+        {
+          threeData?.daily.map((item, index) => {
+            return (
+              <LinearGradient
+                key={index}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+                colors={['#ddd', '#333']}
+                className="items-center justify-between rounded-2xl w-full mt-[10px]"
+                >
+                <Text className="text-[20] text-[#eee] mt-[10]">
+                  {item.fxDate}
+                </Text>
+                <View className="flex-row items-center mb-[10] justify-between " style={{ width: Dimensions.get('window').width - 40 }}>
+                  <View className="flex-row justify-around">
+                    <Text>{item.textDay} {item.tempMax}℃</Text>
+
+                  </View>
+                  <View className="flex-row justify-around" >
+                    <Text>{item.tempMin}℃ {item.textNight}</Text>
+                  </View>
+                </View>
+              </LinearGradient>
+            )
+          })
+        }
+
       </View>
     </SafeAreaScrollView>
   )
