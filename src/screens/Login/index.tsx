@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Dimensions, Platform, SafeAreaView, StatusBar, StyleSheet, View } from 'react-native'
+import { Dimensions, SafeAreaView, StyleSheet, View } from 'react-native'
 import Animated, {
   useAnimatedGestureHandler,
   useAnimatedStyle,
@@ -13,6 +13,8 @@ import { PanGestureHandler } from 'react-native-gesture-handler'
 import { BlurView } from '@react-native-community/blur'
 import TopSection from './TopSection'
 import BottomForm from './BottomForm'
+import StatusBarComp from '@/components/StatusBarComp'
+import { useDark } from '@/hooks'
 
 // 适应不同屏幕高度
 function BottomUpAnimation() {
@@ -51,18 +53,14 @@ function BottomUpAnimation() {
 
     }
   })
-  const statusBarBackgroundColor = Platform.select({
-    android: 'transparent',
-    ios: 'white',
-  })
+
+  const { isDark } = useDark()
+
   return (
-    <View style={styles.container}>
-      <StatusBar
-        barStyle="dark-content"
-        backgroundColor={statusBarBackgroundColor}
-      />
+    <>
       <SafeAreaView style={[styles.safeArea, { backgroundColor: 'transparent' }]} >
         <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.gradient}>
+          <StatusBarComp isDarkStyle={!isDark} />
           <View style={styles.contentWrapper}>
             <BlurView style={styles.blur} blurAmount={25}
               blurType="light"
@@ -79,7 +77,7 @@ function BottomUpAnimation() {
                 hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
               >
                 <Animated.View style={[styles.animatedView, animatedStyle]}>
-                  <View style={styles.card} />
+                  <View style={styles.card} className="bg-white dark:bg-black" />
                   <BottomForm translateY={translateY} />
                 </Animated.View>
               </PanGestureHandler>
@@ -87,15 +85,12 @@ function BottomUpAnimation() {
           </View>
         </LinearGradient>
       </SafeAreaView>
-    </View>
+    </>
 
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   blur: {
     position: 'absolute',
     top: 0,
@@ -114,7 +109,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   card: {
-    backgroundColor: '#fff',
     position: 'absolute',
     left: 0,
     right: 0,
@@ -133,7 +127,6 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     height: '100%', // 修改高度为 100%
-    // backgroundColor: '#fff',
     paddingHorizontal: 20,
   },
 })

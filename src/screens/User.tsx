@@ -32,10 +32,23 @@ const User: React.FC = () => {
           <Ionicons name={'chevron-forward-outline'} size={20} color={'#bbb'}></Ionicons>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => { logout() }}>
+      <TouchableOpacity onPress={() => {
+        Alert.alert(
+          '警告',
+          '确认要退出登录吗？',
+          [
+            {
+              text: '取消',
+              onPress: () => Alert.alert('Cancel Pressed'),
+              style: 'cancel',
+            },
+            { text: '确认', onPress: () => logout() },
+          ],
+        )
+      }}>
         <View className="flex-row justify-between px-[20] items-center  py-[10]" style={styles.line}>
           <View className="flex-row items-center gap-1">
-            <Ionicons name={'settings-outline'} size={20} color={'#22d'}></Ionicons>
+            <Ionicons name={'log-out-outline'} size={20} color={'#22d'}></Ionicons>
             <Text className="text-[18px]">退出</Text>
           </View>
           <Ionicons name={'chevron-forward-outline'} size={20} color={'#bbb'}></Ionicons>

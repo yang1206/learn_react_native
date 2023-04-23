@@ -42,8 +42,6 @@ const AppStack = function AppStack() {
       screenOptions={{
         headerBlurEffect: isDark ? 'systemMaterialDark' : 'systemMaterialLight',
         headerShown: false,
-        gestureEnabled: false,
-        animation: 'none',
       }}
     >
       {
