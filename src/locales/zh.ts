@@ -14,8 +14,30 @@ const zh = {
     done: '完成',
     share: '分享',
   },
+  navigation: {
+    home: '首页',
+    user: '个人中心',
+  },
   homeScreen: {
     hello: '你好！',
+  },
+  UserScreen: {
+    language: '简体中文',
+    logout: '退出登录',
+    about: '关于',
+  },
+  Login: {
+    welcome: '欢迎使用我们的应用！',
+    login: '登录',
+    register: '注册',
+    goRegister: '没有账户？去注册',
+    goLogin: '已有账户？去登录',
+    email: '邮箱',
+    emailPlaceholder: '请输入邮箱',
+    passwordPlaceholder: '请输入密码',
+    password: '密码',
+    confirmPassword: '确认密码',
+    confirmPasswordPlaceholder: '请再次输入密码',
   },
   permissionManager: {
     camera: '相机',

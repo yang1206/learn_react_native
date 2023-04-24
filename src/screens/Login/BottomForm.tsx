@@ -8,6 +8,7 @@ import { withTiming } from 'react-native-reanimated'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { ControlledInput } from '@/ui'
 import { useAuthStore } from '@/store'
+import { t } from '@/locales'
 
 interface BottomFormProps {
   translateY: Animated.SharedValue<number>
@@ -56,7 +57,7 @@ function BottomForm({ translateY }: BottomFormProps) {
     <View style={styles.formContainer}>
       {/* 切换表单类型 */}
       <TouchableOpacity onPress={handleSwitchFormType}>
-        <Text style={styles.formTypeText}>{formType === 'login' ? '没有账户？去注册' : '已有账户？去登录'}</Text>
+        <Text style={styles.formTypeText}>{formType === 'login' ? t('Login.goRegister') : t('Login.goLogin')}</Text>
       </TouchableOpacity>
 
       {/* 表单项 */}
@@ -64,18 +65,18 @@ function BottomForm({ translateY }: BottomFormProps) {
         testID="email-input"
         control={control}
         name="email"
-        label="邮箱"
+        label={t('Login.email')}
         keyboardType="email-address"
-        placeholder="请输入邮箱"
+        placeholder={t('Login.emailPlaceholder')}
       />
       <View className="relative">
         <ControlledInput
           testID="password-input"
           control={control}
           name="password"
-          label="密码"
+          label={t('Login.password')}
           secureTextEntry={!showPassword}
-          placeholder="请输入密码"
+          placeholder={t('Login.passwordPlaceholder')}
         />
         <TouchableOpacity className=" absolute right-5 top-[40%]" onPress={() => setShowPassword(!showPassword)}>
           <Ionicons name={showPassword ? 'eye-off-outline' : 'eye-outline'} size={24} color="#ccc" />
@@ -87,9 +88,9 @@ function BottomForm({ translateY }: BottomFormProps) {
             testID="confirmPassword-input"
             control={control}
             name="confirmPassword"
-            label="确认密码"
+            label={t('Login.confirmPassword')}
             secureTextEntry={true}
-            placeholder="请再次输入密码"
+            placeholder={t('Login.confirmPasswordPlaceholder')}
           />
         </>
       )}
@@ -99,7 +100,7 @@ function BottomForm({ translateY }: BottomFormProps) {
         style={[styles.button, { backgroundColor: formType === 'login' ? '#6c63ff' : '#ff69b4' }]}
         onPress={handleSubmit(data => onSubmit(JSON.stringify(data)))}
       >
-        <Text style={styles.buttonText}>{formType === 'login' ? '登录' : '注册'}</Text>
+        <Text style={styles.buttonText}>{formType === 'login' ? t('Login.login') : t('Login.register')}</Text>
       </TouchableOpacity>
 
     </View>

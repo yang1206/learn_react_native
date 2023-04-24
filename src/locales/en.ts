@@ -16,8 +16,30 @@ const en: Translations = {
     done: 'Done',
     share: 'Share',
   },
+  navigation: {
+    home: 'Home',
+    user: 'User',
+  },
   homeScreen: {
     hello: 'Hello!',
+  },
+  UserScreen: {
+    language: 'English',
+    logout: 'Log out',
+    about: 'About',
+  },
+  Login: {
+    welcome: 'Welcome to use our application!',
+    login: 'Login',
+    register: 'Register',
+    goRegister: 'Don\'t have an account? Go register',
+    goLogin: 'Already have an account? Go to login',
+    email: 'email',
+    emailPlaceholder: 'Please enter your email address',
+    password: 'password',
+    passwordPlaceholder: 'Please enter your password',
+    confirmPassword: 'Confirm Password',
+    confirmPasswordPlaceholder: 'Please enter your password again',
   },
   permissionManager: {
     camera: 'Camera',

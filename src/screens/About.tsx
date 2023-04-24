@@ -1,7 +1,7 @@
 import { styled, useColorScheme } from 'nativewind'
 import React from 'react'
 import { Pressable, StyleSheet, Text, TouchableHighlight, View } from 'react-native'
-import { SafeAreaScrollView } from '../components/SafeAreaScrollView'
+import { SafeAreaScrollView } from '../ui/core/safearea-scrollview'
 
 export function About() {
   const StyledPressable = styled(Pressable)

@@ -2,12 +2,13 @@ import type { ScrollViewProps, ViewStyle } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import type { SafeAreaViewProps } from 'react-native-safe-area-context'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { styled } from 'nativewind'
 
 interface SafeAreaScrollViewProps extends ScrollViewProps {
   safeAreaProps?: SafeAreaViewProps
 }
 
-export function SafeAreaScrollView({
+function styledSafeAreaScrollView({
   children,
   safeAreaProps,
   ...scrollViewProps
@@ -28,3 +29,5 @@ export function SafeAreaScrollView({
 const $defaultSafeAreaStyle: ViewStyle = {
   flex: 1,
 }
+
+export const SafeAreaScrollView = styled(styledSafeAreaScrollView)

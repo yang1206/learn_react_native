@@ -3,6 +3,7 @@ import * as React from 'react'
 import { Text, TouchableOpacity } from 'react-native'
 import { navigate } from './helpers/navigationUtilities'
 import { HomeScreen as Home } from '@/screens'
+import { t } from '@/locales'
 
 export type HomeStackParamList = {
   Home: undefined
@@ -30,7 +31,7 @@ export function FirstNavigator() {
         }}
       >
         <Stack.Screen options={{
-          title: '首页',
+          title: t('navigation.home'),
           headerShadowVisible: false,
         }} name="Home" component={Home} />
       </Stack.Group>

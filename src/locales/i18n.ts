@@ -3,8 +3,8 @@ import { I18nManager } from 'react-native'
 import { SupportedLanguage } from './constants'
 import { preferredLocale } from './helpers/preferredLocale'
 import type { Translations } from './en'
-import en from './en'
-import zh from './zh'
+import { resources } from './resources'
+import { getLanguage } from './utils'
 
 export const LanguageReadable = {
   [SupportedLanguage.ZH]: '简体中文',
@@ -14,18 +14,11 @@ export const LanguageReadable = {
 i18n.init({
   compatibilityJSON: 'v3',
   debug: false,
-  lng: preferredLocale.languageCode,
+  lng: getLanguage() || preferredLocale.languageCode,
   fallbackLng: SupportedLanguage.EN,
   supportedLngs: [SupportedLanguage.EN, SupportedLanguage.ZH],
   nonExplicitSupportedLngs: true,
-  resources: {
-    en: {
-      translation: en,
-    },
-    zh: {
-      translation: zh,
-    },
-  },
+  resources,
 })
 export const isRTL: boolean = i18n.dir() === 'rtl'
 

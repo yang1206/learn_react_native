@@ -6,12 +6,12 @@ import * as React from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import type { IconProps } from 'react-native-vector-icons/Icon'
 import { FirstNavigator } from './first-navigator'
-import { NewsScreen, UserScreen } from '@/screens'
+import { UserScreen } from '@/screens'
 import { colors } from '@/ui'
+import { t } from '@/locales'
 
 export type TabParamList = {
   First: undefined
-  News: undefined
   User: undefined
 }
 
@@ -30,10 +30,6 @@ const tabsIcons: TabIconsType = {
     name="home-outline"
     {...props}
   />,
-  News: props => <Ionicons
-    name="newspaper-outline"
-    {...props}
-  />,
   User: props => <Ionicons
     name="person"
     {...props}
@@ -49,17 +45,12 @@ const tabs: TabType[] = [
   {
     name: 'First',
     component: FirstNavigator,
-    label: 'Home',
-  },
-  {
-    name: 'News',
-    component: NewsScreen,
-    label: 'News',
+    label: t('navigation.home'),
   },
   {
     name: 'User',
     component: UserScreen,
-    label: '个人中心',
+    label: t('navigation.user'),
   },
 ]
 
@@ -76,7 +67,6 @@ function BarIcon({ color, name, size, ...reset }: BarIconType) {
 export function TabNavigator() {
   return (
     <Tab.Navigator
-      // initialRouteName="News"
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color }) => <BarIcon name={route.name} size={30} color={color} />,
         tabBarActiveTintColor: colors.primary[400],
