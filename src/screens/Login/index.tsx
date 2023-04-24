@@ -13,7 +13,7 @@ import { PanGestureHandler } from 'react-native-gesture-handler'
 import { BlurView } from '@react-native-community/blur'
 import TopSection from './TopSection'
 import BottomForm from './BottomForm'
-import StatusBarComp from '@/components/StatusBarComp'
+import StatusBar from '@/ui/core/status-bar'
 import { useDark } from '@/hooks'
 
 // 适应不同屏幕高度
@@ -60,7 +60,7 @@ function BottomUpAnimation() {
     <>
       <SafeAreaView style={[styles.safeArea, { backgroundColor: 'transparent' }]} >
         <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.gradient}>
-          <StatusBarComp isDarkStyle={!isDark} />
+          <StatusBar isDarkStyle={!isDark} />
           <View style={styles.contentWrapper}>
             <BlurView style={styles.blur} blurAmount={25}
               blurType="light"

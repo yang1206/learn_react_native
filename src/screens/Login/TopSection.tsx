@@ -2,12 +2,13 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import { t } from '@/locales'
 
 function TopSection() {
   return (
     <View style={styles.top}>
       <MaterialIcons name="account-circle" size={40} color="#fff" />
-      <Text style={styles.welcomeText}>欢迎使用我们的应用！</Text>
+      <Text style={styles.welcomeText}>{t('Login.welcome')}</Text>
     </View>
   )
 }
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
     marginTop: 30, // 添加顶部外边距
   },
   welcomeText: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: 'bold',
     color: '#fff',
     textAlign: 'center',

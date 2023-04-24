@@ -8,7 +8,7 @@ import { useFlipper } from '@react-navigation/devtools'
 import { TabNavigator } from './tab-navigator'
 import { navigationRef } from './helpers/navigationUtilities'
 import { AuthNavigator } from './auth-navigator'
-import { AboutScreen, CameraScreen, TestScreen, TodoScreen } from '@/screens'
+import { AboutScreen, CameraScreen, TodoScreen } from '@/screens'
 import { MediaPage } from '@/components/Camera/MediaPage'
 import { useAuthStore } from '@/store'
 
@@ -17,7 +17,6 @@ export type AppStackParamList = {
   Camera: undefined
   Todo: undefined
   About: undefined
-  Test: undefined
   Auth: undefined
   MediaPage: {
     path: string
@@ -55,9 +54,6 @@ const AppStack = function AppStack() {
               <Stack.Screen options={{
                 headerShown: false,
               }} name="Camera" component={CameraScreen} />
-              <Stack.Screen options={{
-                headerShown: false,
-              }} name="Test" component={TestScreen} />
               <Stack.Screen options={{
                 headerShown: false,
               }} name="MediaPage" component={MediaPage} />
