@@ -15,6 +15,7 @@ const en: Translations = {
     close: 'Close',
     done: 'Done',
     share: 'Share',
+    warning: 'Warning',
   },
   navigation: {
     home: 'Home',
@@ -24,9 +25,17 @@ const en: Translations = {
     hello: 'Hello!',
   },
   UserScreen: {
-    language: 'English',
+    language: 'Language',
     logout: 'Log out',
+    logouttext: 'Confirm to log out?',
     about: 'About',
+    chinese: 'Chinese',
+    english: 'English',
+    light: 'Light',
+    dark: 'Dark',
+    system: 'System',
+    theme: 'Theme',
+
   },
   Login: {
     welcome: 'Welcome to use our application!',

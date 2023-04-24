@@ -10,6 +10,7 @@ import {
 } from '@react-navigation/native'
 import type { PersistNavigationConfig } from '../../config/config.base'
 import type * as storage from '../../utils/storage'
+import type { RootStackParamList } from './types'
 import Config from '@/config'
 import { useIsMounted } from '@/hooks'
 
@@ -156,7 +157,7 @@ export function useNavigationPersistence(storage: Storage, persistenceKey: strin
  * prop. If you have access to the navigation prop, do not use this.
  * More info: https://reactnavigation.org/docs/navigating-without-navigation-prop/
  */
-export function navigate(name: any, params?: any) {
+export function navigate(name: keyof RootStackParamList, params?: any) {
   if (navigationRef.isReady())
     navigationRef.navigate(name as never, params as never)
 }

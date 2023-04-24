@@ -11,7 +11,7 @@ import {
 import { format } from 'date-fns'
 import DropDownPicker from 'react-native-dropdown-picker'
 import DateTimePickerModal from 'react-native-modal-datetime-picker'
-import { useStore } from '@/store'
+import { useTodoStore } from '@/store'
 
 function TaskInput() {
   const [priority, setPriority] = useState<string>('Low')
@@ -34,7 +34,7 @@ function TaskInput() {
     }
     setShowDatePicker(false)
   }
-  const { addTodo } = useStore()
+  const { addTodo } = useTodoStore()
   const handleAddTodo = () => {
     if (task.trim() === '') {
       Alert.alert('Please enter a non-empty task')

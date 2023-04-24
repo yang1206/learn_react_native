@@ -13,6 +13,8 @@
     "ios/Pods/Headers/Public/RCT-Folly/folly/lang"
   ],
   "cSpell.words": [
-    "Swiper"
+    "mmkv",
+    "Swiper",
+    "zustand"
   ]
 }

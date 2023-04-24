@@ -1,21 +1,18 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 import { Alert, StyleSheet } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import { useNavigation } from '@react-navigation/native'
+import { LanguageItem } from './language-item'
+import { ThemeItem } from './theme-item'
 import { SafeAreaScrollView } from '@/ui/core/safearea-scrollview'
 import { Image, Text, TouchableOpacity, View } from '@/ui'
-import { navigate } from '@/navigation'
 import { useAuthStore } from '@/store'
-import { t, useSelectedLanguage } from '@/locales'
+import { t } from '@/locales'
 
 const User: React.FC = () => {
   const { logout } = useAuthStore()
+  const { navigate } = useNavigation()
 
-  const { language, setLanguage } = useSelectedLanguage()
-
-  const changeLanguage = useCallback(() => {
-    language === 'zh' ? setLanguage('en') : setLanguage('zh')
-    // forceUpdate()
-  }, [setLanguage])
   return (
     <SafeAreaScrollView contentContainerStyle={styles.container}>
       <View className="flex-row justify-center" style={styles.line}>
@@ -30,19 +27,12 @@ const User: React.FC = () => {
           <Ionicons name={'chevron-forward-outline'} size={20} color={'#bbb'}></Ionicons>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={changeLanguage}>
-        <View className="flex-row justify-between px-[20] items-center  py-[10]" style={styles.line}>
-          <View className="flex-row items-center gap-1">
-            <Ionicons name={'language-outline'} size={20} color={'#22d'}></Ionicons>
-            <Text className="text-[18px]">{t('UserScreen.language')}</Text>
-          </View>
-          <Ionicons name={'chevron-forward-outline'} size={20} color={'#bbb'}></Ionicons>
-        </View>
-      </TouchableOpacity>
+      <LanguageItem />
+      <ThemeItem />
       <TouchableOpacity onPress={() => {
         Alert.alert(
-          '警告',
-          '确认要退出登录吗？',
+          t('common.warning'),
+          t('UserScreen.logouttext'),
           [
             {
               text: t('common.cancel'),

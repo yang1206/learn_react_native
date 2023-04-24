@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import type Animated from 'react-native-reanimated'
 import { withTiming } from 'react-native-reanimated'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import { ControlledInput } from '@/ui'
+import { Button, ControlledInput, Text, TouchableOpacity, View } from '@/ui'
 import { useAuthStore } from '@/store'
 import { t } from '@/locales'
 
@@ -96,12 +96,13 @@ function BottomForm({ translateY }: BottomFormProps) {
       )}
 
       {/* 提交按钮 */}
-      <TouchableOpacity
+      <Button
+        shape="square"
+        label={formType === 'login' ? t('Login.login') : t('Login.register')}
         style={[styles.button, { backgroundColor: formType === 'login' ? '#6c63ff' : '#ff69b4' }]}
         onPress={handleSubmit(data => onSubmit(JSON.stringify(data)))}
       >
-        <Text style={styles.buttonText}>{formType === 'login' ? t('Login.login') : t('Login.register')}</Text>
-      </TouchableOpacity>
+      </Button>
 
     </View>
   )

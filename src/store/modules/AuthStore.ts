@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
-import { mmkvStorage, removeItem, setItem } from '@/utils'
+import { mmkvStorage } from '@/utils'
 
 export interface AuthState {
   token: string | null
@@ -15,11 +15,9 @@ export const useAuthStore = create<AuthState>()(
       token: null,
       isAuth: false,
       login: async (token) => {
-        setItem('token', token)
         set({ token, isAuth: true })
       },
       logout: async () => {
-        await removeItem('token')
         set({ token: null, isAuth: false })
       },
     }),

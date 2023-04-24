@@ -1,9 +1,8 @@
 import i18n from 'i18next'
 import { I18nManager } from 'react-native'
 import { SupportedLanguage } from './constants'
-import { preferredLocale } from './helpers/preferredLocale'
-import type { Translations } from './en'
-import { resources } from './resources'
+import type { Translations } from './translations/en'
+import { resources } from './translations/resources'
 import { getLanguage } from './utils'
 
 export const LanguageReadable = {
@@ -14,7 +13,7 @@ export const LanguageReadable = {
 i18n.init({
   compatibilityJSON: 'v3',
   debug: false,
-  lng: getLanguage() || preferredLocale.languageCode,
+  lng: getLanguage(),
   fallbackLng: SupportedLanguage.EN,
   supportedLngs: [SupportedLanguage.EN, SupportedLanguage.ZH],
   nonExplicitSupportedLngs: true,

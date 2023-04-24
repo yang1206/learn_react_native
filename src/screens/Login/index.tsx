@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Dimensions, SafeAreaView, StyleSheet, View } from 'react-native'
+import { Dimensions, StyleSheet } from 'react-native'
 import Animated, {
   useAnimatedGestureHandler,
   useAnimatedStyle,
@@ -13,7 +13,7 @@ import { PanGestureHandler } from 'react-native-gesture-handler'
 import { BlurView } from '@react-native-community/blur'
 import TopSection from './TopSection'
 import BottomForm from './BottomForm'
-import StatusBar from '@/ui/core/status-bar'
+import { SafeAreaView, StatusBar, View } from '@/ui'
 import { useDark } from '@/hooks'
 
 // 适应不同屏幕高度
@@ -114,8 +114,8 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: -100,
     top: 0,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
   },
   contentWrapper: {
     flex: 1,

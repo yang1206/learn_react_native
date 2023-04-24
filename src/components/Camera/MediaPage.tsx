@@ -12,7 +12,7 @@ import { useIsFocused } from '@react-navigation/native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { StatusBarBlurBackground } from './StatusBarBlurBackground'
 import { useIsForeground } from '@/hooks/useIsForeground'
-import type { AppStackParamList } from '@/navigation/app-navigator'
+import type { AppStackParamList } from '@/navigation'
 
 async function requestSavePermission(): Promise<boolean> {
   if (Platform.OS !== 'android')

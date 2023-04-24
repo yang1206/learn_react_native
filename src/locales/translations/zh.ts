@@ -13,6 +13,7 @@ const zh = {
     close: '关闭',
     done: '完成',
     share: '分享',
+    warning: '警告',
   },
   navigation: {
     home: '首页',
@@ -22,9 +23,16 @@ const zh = {
     hello: '你好！',
   },
   UserScreen: {
-    language: '简体中文',
+    language: '语言',
     logout: '退出登录',
     about: '关于',
+    logouttext: '确认要退出吗？',
+    chinese: '中文',
+    english: 'English',
+    light: '浅色模式',
+    dark: '深色模式',
+    system: '跟随系统',
+    theme: '主题',
   },
   Login: {
     welcome: '欢迎使用我们的应用！',

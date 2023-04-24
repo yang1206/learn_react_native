@@ -85,6 +85,9 @@ dependencies:
   react-native-fast-image:
     specifier: ^8.6.3
     version: 8.6.3(react-native@0.71.7)(react@18.2.0)
+  react-native-flash-message:
+    specifier: ^0.4.1
+    version: 0.4.1(prop-types@15.8.1)(react-native@0.71.7)(react@18.2.0)
   react-native-gesture-handler:
     specifier: ^2.9.0
     version: 2.9.0(react-native@0.71.7)(react@18.2.0)
@@ -10049,6 +10052,19 @@ packages:
       react-native: 0.71.7(@babel/core@7.21.4)(@babel/preset-env@7.21.4)(react@18.2.0)
     dev: false
 
+  /react-native-flash-message@0.4.1(prop-types@15.8.1)(react-native@0.71.7)(react@18.2.0):
+    resolution: {integrity: sha512-sWpLBzB7Nbrh9ppq/8BfU10kd2wQuEGsg0RXf5qpQ9yxnsO7ShZzCGh7WLzRZcttkQg43onKkL2gvuI0PG1Buw==}
+    peerDependencies:
+      prop-types: ^15.0 || ^16.0
+      react: '*'
+      react-native: '*'
+    dependencies:
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-native: 0.71.7(@babel/core@7.21.4)(@babel/preset-env@7.21.4)(react@18.2.0)
+      react-native-iphone-screen-helper: 2.0.3(react-native@0.71.7)
+    dev: false
+
   /react-native-flipper@0.189.0(react-native@0.71.7)(react@18.2.0):
     resolution: {integrity: sha512-hV3Omq0wPCwGp6A61PHzh9QLw18pgfgxo74cYxTfOCfEQd0UbvMvEmfpWxiMCFLQ/3UWBylcRC2eu0bKQcKFdQ==}
     peerDependencies:
@@ -10093,6 +10109,14 @@ packages:
     dependencies:
       invariant: 2.2.4
       opencollective-postinstall: 2.0.3
+      react-native: 0.71.7(@babel/core@7.21.4)(@babel/preset-env@7.21.4)(react@18.2.0)
+    dev: false
+
+  /react-native-iphone-screen-helper@2.0.3(react-native@0.71.7):
+    resolution: {integrity: sha512-gbSnV0iYWQ3hne3inYoueatSJL/Un49biIkHLGKsm7J7QjFhL+/WSPB1sZhQ87lNIANwFh33nvxcjixxR4T+NQ==}
+    peerDependencies:
+      react-native: '>=0.42.0'
+    dependencies:
       react-native: 0.71.7(@babel/core@7.21.4)(@babel/preset-env@7.21.4)(react@18.2.0)
     dev: false
 

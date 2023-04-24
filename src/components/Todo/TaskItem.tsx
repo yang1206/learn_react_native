@@ -1,10 +1,10 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { useStore } from '../../store'
-import type { Todo } from '../../store/TodoSlice'
+import { useTodoStore } from '@/store'
+import type { Todo } from '@/store'
 
 const TaskItem: React.FC<{ task: Todo }> = ({ task }) => {
-  const { removeTodo } = useStore()
+  const { removeTodo } = useTodoStore()
 
   const handleRemoveTodo = () => {
     removeTodo(task.id)
