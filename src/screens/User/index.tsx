@@ -1,5 +1,5 @@
 import React from 'react'
-import { Alert, StyleSheet } from 'react-native'
+import { Alert, Dimensions, StyleSheet } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { useNavigation } from '@react-navigation/native'
 import { LanguageItem } from './language-item'
@@ -12,7 +12,7 @@ import { t } from '@/locales'
 const User: React.FC = () => {
   const { logout } = useAuthStore()
   const { navigate } = useNavigation()
-
+  const { width: PAGE_WIDTH } = Dimensions.get('window')
   return (
     <SafeAreaScrollView contentContainerStyle={styles.container}>
       <View className="flex-row justify-center" style={styles.line}>
@@ -36,7 +36,6 @@ const User: React.FC = () => {
           [
             {
               text: t('common.cancel'),
-              onPress: () => Alert.alert('Cancel Pressed'),
               style: 'cancel',
             },
             { text: t('common.confirm'), onPress: () => logout() },

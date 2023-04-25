@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
+import type { TCarouselProps } from 'react-native-reanimated-carousel'
 import Carousel from 'react-native-reanimated-carousel'
 import type { AnimatedStyleProp } from 'react-native-reanimated'
 import Animated, {
@@ -52,7 +53,11 @@ const CustomItem: React.FC<ItemProps> = ({ index, animationValue, item }) => {
   )
 }
 
-export default function Swiper() {
+export type ISwiper = Omit<TCarouselProps, 'renderItem' | 'mode' | 'modeConfig'> & {
+  data: Array<{ id: number | string; image: string }>
+}
+
+export default function Swiper(props: ISwiper) {
   const animationStyle: TAnimationStyle = React.useCallback(
     (value: number) => {
       'worklet'
@@ -71,60 +76,21 @@ export default function Swiper() {
     },
     [],
   )
-
-  const [isVertical, setIsVertical] = useState(false)
   const progressValue = useSharedValue<number>(0)
-  const [pagingEnabled, setPagingEnabled] = useState<boolean>(true)
-  const [snapEnabled, setSnapEnabled] = useState<boolean>(true)
-  const imagesData = [
-    {
-      id: 1,
-      image:
-        'https://images.unsplash.com/photo-1571091718767-18b5b1457add?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=640&q=80',
-    },
-    {
-      id: 2,
-      image:
-        'https://images.unsplash.com/photo-1551782450-a2132b4ba21d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=640&q=80',
-    },
-    {
-      id: 3,
-      image:
-        'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=640&q=80',
-    },
-  ]
-  const baseOptions = isVertical
-    ? ({
-        vertical: true,
-        width: PAGE_WIDTH * 0.86,
-        height: PAGE_WIDTH * 0.6,
-      } as const)
-    : ({
-        vertical: false,
-        width: PAGE_WIDTH,
-        height: PAGE_WIDTH * 0.6,
-      } as const)
   return (
     <>
       <Carousel
-        {...baseOptions}
-        loop
-        autoPlay
-        data={imagesData}
+        {...props}
         onProgressChange={(_, absoluteProgress) =>
           (progressValue.value = absoluteProgress)
         }
-        pagingEnabled={pagingEnabled}
-        snapEnabled={snapEnabled}
-        scrollAnimationDuration={1500}
-        mode="parallax"
+        width={props.width as number}
+        height={props.height as number}
         modeConfig={{
           parallaxScrollingScale: 0.9,
           parallaxScrollingOffset: 50,
         }}
-        panGestureHandlerProps={{
-          activeOffsetX: [-10, 10],
-        }}
+        mode="parallax"
         renderItem={({ item, index, animationValue }) => (
           <CustomItem index={index} animationValue={animationValue} item={item}/>
         )}
@@ -140,7 +106,7 @@ export default function Swiper() {
               width: 35,
               alignSelf: 'center',
             }}>
-            {imagesData.map((item, index) => {
+            {props.data.map((item, index) => {
               return (
                 <PaginationItem
                   backgroundColor={'skyblue'}
@@ -148,8 +114,8 @@ export default function Swiper() {
                   animValue={progressValue}
                   index={index}
                   key={item.id}
-                  isRotate={isVertical}
-                  length={imagesData.length}
+                  isRotate={props.vertical}
+                  length={props.data.length}
                 />
               )
             })}

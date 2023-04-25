@@ -4,8 +4,9 @@ import type { StackScreenProps } from '@react-navigation/stack'
 import type { AuthStackParamList } from '../auth-navigator'
 import type { FeedStackParamList } from '../feed-navigator'
 import type { AppStackParamList } from '../root-navigator'
+import type { CameraStackParamList } from '../camera-navigator'
 
-export type RootStackParamList = AuthStackParamList & FeedStackParamList & AppStackParamList //  & FooStackParamList & BarStackParamList
+export type RootStackParamList = AuthStackParamList & FeedStackParamList & AppStackParamList & CameraStackParamList //  & FooStackParamList & BarStackParamList
 // very important to type check useNavigation hook
 declare global {
   namespace ReactNavigation {

@@ -31,7 +31,7 @@ import { useIsFocused, useNavigation } from '@react-navigation/native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { CaptureButton } from './CaptureButton'
 import { StatusBarBlurBackground } from './StatusBarBlurBackground'
-import { useDark, useIsForeground } from '@/hooks'
+import { useIsForeground, useThemeStore } from '@/hooks'
 import { goBack, navigate } from '@/navigation'
 
 const ReanimatedCamera = Reanimated.createAnimatedComponent(CameraVision)
@@ -39,9 +39,9 @@ const ReanimatedCamera = Reanimated.createAnimatedComponent(CameraVision)
 Reanimated.addWhitelistedNativeProps({
   zoom: true,
 })
-function Camera() {
+export function CameraScreen() {
   const navigation = useNavigation()
-  const { isDark } = useDark()
+  const { isDark } = useThemeStore()
   const isFocussed = useIsFocused()
   const isForeground = useIsForeground()
   const isActive = isFocussed && isForeground // 判断是否留在当前屏幕
@@ -105,7 +105,7 @@ function Camera() {
     (media: PhotoFile | VideoFile, type: 'photo' | 'video') => {
       /* eslint-disable-next-line   no-console */
       console.log(`Media captured! ${JSON.stringify(media)}`)
-      navigate('MediaPage', {
+      navigate('Media', {
         path: media.path,
         type,
       })
@@ -378,5 +378,3 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 })
-
-export default Camera

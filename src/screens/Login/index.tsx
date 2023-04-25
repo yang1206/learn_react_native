@@ -14,7 +14,7 @@ import { BlurView } from '@react-native-community/blur'
 import TopSection from './TopSection'
 import BottomForm from './BottomForm'
 import { SafeAreaView, StatusBar, View } from '@/ui'
-import { useDark } from '@/hooks'
+import { useThemeStore } from '@/hooks'
 
 // 适应不同屏幕高度
 function BottomUpAnimation() {
@@ -54,7 +54,7 @@ function BottomUpAnimation() {
     }
   })
 
-  const { isDark } = useDark()
+  const { isDark } = useThemeStore()
 
   return (
     <>

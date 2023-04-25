@@ -5,8 +5,8 @@ import type { ComponentType } from 'react'
 import * as React from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import type { IconProps } from 'react-native-vector-icons/Icon'
+import { useNavigation } from '@react-navigation/native'
 import { FeedNavigator } from './feed-navigator'
-import { navigate } from './helpers/navigationUtilities'
 import { HomeScreen, UserScreen } from '@/screens'
 import { TouchableOpacity, colors } from '@/ui'
 import { t } from '@/locales'
@@ -77,6 +77,7 @@ function BarIcon({ color, name, size, ...reset }: BarIconType) {
   return <Icon color={color} size={size} {...reset} />
 }
 export function TabNavigator() {
+  const { navigate } = useNavigation()
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -95,14 +96,10 @@ export function TabNavigator() {
               component={component}
               options={{
                 title: label,
-                // headerStyle: {
-                //   backgroundColor: '#00b38a',
-                // },
-                // headerTintColor: '#fff',
                 headerShown: name !== 'FeedNavigator',
                 headerRight: name === 'Home'
                   ? () => (
-                  <TouchableOpacity onPress={() => { navigate('Camera') }}>
+                  <TouchableOpacity onPress={() => { navigate('CameraNavigator') }}>
                       <Ionicons color={colors.primary[400]} name="camera-outline" size={30} style={{ marginRight: 10 }}></Ionicons>
                   </TouchableOpacity>
                     )

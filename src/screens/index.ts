@@ -1,8 +1,7 @@
 import HomeScreen from './Home'
 import AboutScreen from './About'
 import UserScreen from './User'
-import CameraScreen from './Camera'
-import TodoScreen from './Todo'
+import { CameraScreen, MediaScreen } from './Camera'
 import LoginScreen from './Login'
 import { AddPost, Feed, Post } from './feed'
 
@@ -11,7 +10,7 @@ export {
   AboutScreen,
   UserScreen,
   CameraScreen,
-  TodoScreen,
+  MediaScreen,
   LoginScreen,
   AddPost, Feed, Post,
 }
