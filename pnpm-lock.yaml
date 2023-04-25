@@ -13,9 +13,6 @@ dependencies:
   '@react-native-community/blur':
     specifier: ^4.3.0
     version: 4.3.0(react-native@0.71.7)(react@18.2.0)
-  '@react-native-community/datetimepicker':
-    specifier: ^6.7.3
-    version: 6.7.3
   '@react-native-community/geolocation':
     specifier: ^3.0.6
     version: 3.0.6(react-native@0.71.7)(react@18.2.0)
@@ -79,12 +76,12 @@ dependencies:
   react-native-device-info:
     specifier: ^10.6.0
     version: 10.6.0(react-native@0.71.7)
-  react-native-dropdown-picker:
-    specifier: ^5.4.6
-    version: 5.4.6(react-native@0.71.7)(react@18.2.0)
   react-native-fast-image:
     specifier: ^8.6.3
     version: 8.6.3(react-native@0.71.7)(react@18.2.0)
+  react-native-flash-message:
+    specifier: ^0.4.1
+    version: 0.4.1(prop-types@15.8.1)(react-native@0.71.7)(react@18.2.0)
   react-native-gesture-handler:
     specifier: ^2.9.0
     version: 2.9.0(react-native@0.71.7)(react@18.2.0)
@@ -100,9 +97,6 @@ dependencies:
   react-native-mmkv:
     specifier: ^2.6.3
     version: 2.6.3(react-native@0.71.7)(react@18.2.0)
-  react-native-modal-datetime-picker:
-    specifier: ^14.0.1
-    version: 14.0.1(@react-native-community/datetimepicker@6.7.3)(react-native@0.71.7)
   react-native-permissions:
     specifier: ^3.8.0
     version: 3.8.0(react-native@0.71.7)(react@18.2.0)
@@ -2816,12 +2810,6 @@ packages:
       - encoding
       - supports-color
       - utf-8-validate
-
-  /@react-native-community/datetimepicker@6.7.3:
-    resolution: {integrity: sha512-fXWbEdHMLW/e8cts3snEsbOTbnFXfUHeO2pkiDFX3fWpFoDtUrRWvn50xbY13IJUUKHDhoJ+mj24nMRVIXfX1A==}
-    dependencies:
-      invariant: 2.2.4
-    dev: false
 
   /@react-native-community/eslint-plugin@1.3.0:
     resolution: {integrity: sha512-+zDZ20NUnSWghj7Ku5aFphMzuM9JulqCW+aPXT6IfIXFbb8tzYTTOSeRFOtuekJ99ibW2fUCSsjuKNlwDIbHFg==}
@@ -10029,16 +10017,6 @@ packages:
       react-native: 0.71.7(@babel/core@7.21.4)(@babel/preset-env@7.21.4)(react@18.2.0)
     dev: false
 
-  /react-native-dropdown-picker@5.4.6(react-native@0.71.7)(react@18.2.0):
-    resolution: {integrity: sha512-T1XBHbE++M6aRU3wFYw3MvcOuabhWZ29RK/Ivdls2r1ZkZ62iEBZknLUPeVLMX3x6iUxj4Zgr3X2DGlEGXeHsA==}
-    peerDependencies:
-      react: '*'
-      react-native: '*'
-    dependencies:
-      react: 18.2.0
-      react-native: 0.71.7(@babel/core@7.21.4)(@babel/preset-env@7.21.4)(react@18.2.0)
-    dev: false
-
   /react-native-fast-image@8.6.3(react-native@0.71.7)(react@18.2.0):
     resolution: {integrity: sha512-Sdw4ESidXCXOmQ9EcYguNY2swyoWmx53kym2zRsvi+VeFCHEdkO+WG1DK+6W81juot40bbfLNhkc63QnWtesNg==}
     peerDependencies:
@@ -10047,6 +10025,19 @@ packages:
     dependencies:
       react: 18.2.0
       react-native: 0.71.7(@babel/core@7.21.4)(@babel/preset-env@7.21.4)(react@18.2.0)
+    dev: false
+
+  /react-native-flash-message@0.4.1(prop-types@15.8.1)(react-native@0.71.7)(react@18.2.0):
+    resolution: {integrity: sha512-sWpLBzB7Nbrh9ppq/8BfU10kd2wQuEGsg0RXf5qpQ9yxnsO7ShZzCGh7WLzRZcttkQg43onKkL2gvuI0PG1Buw==}
+    peerDependencies:
+      prop-types: ^15.0 || ^16.0
+      react: '*'
+      react-native: '*'
+    dependencies:
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-native: 0.71.7(@babel/core@7.21.4)(@babel/preset-env@7.21.4)(react@18.2.0)
+      react-native-iphone-screen-helper: 2.0.3(react-native@0.71.7)
     dev: false
 
   /react-native-flipper@0.189.0(react-native@0.71.7)(react@18.2.0):
@@ -10096,6 +10087,14 @@ packages:
       react-native: 0.71.7(@babel/core@7.21.4)(@babel/preset-env@7.21.4)(react@18.2.0)
     dev: false
 
+  /react-native-iphone-screen-helper@2.0.3(react-native@0.71.7):
+    resolution: {integrity: sha512-gbSnV0iYWQ3hne3inYoueatSJL/Un49biIkHLGKsm7J7QjFhL+/WSPB1sZhQ87lNIANwFh33nvxcjixxR4T+NQ==}
+    peerDependencies:
+      react-native: '>=0.42.0'
+    dependencies:
+      react-native: 0.71.7(@babel/core@7.21.4)(@babel/preset-env@7.21.4)(react@18.2.0)
+    dev: false
+
   /react-native-localize@2.2.6(react-native@0.71.7)(react@18.2.0):
     resolution: {integrity: sha512-EZETlC1ZlW/4g6xfsNCwAkAw5BDL2A6zk/08JjFR/GRGxYuKRD7iP1hHn1+h6DEu+xROjPpoNeXfMER2vkTVIQ==}
     peerDependencies:
@@ -10131,17 +10130,6 @@ packages:
     dependencies:
       react: 18.2.0
       react-native: 0.71.7(@babel/core@7.21.4)(@babel/preset-env@7.21.4)(react@18.2.0)
-
-  /react-native-modal-datetime-picker@14.0.1(@react-native-community/datetimepicker@6.7.3)(react-native@0.71.7):
-    resolution: {integrity: sha512-wQt4Pjxt2jiTsVhLMG0E7WrRTYBEQx2d/nUrFVCbRqJ7lrXocXaT5UZsyMpV93TnKcyut62OprbO88wYq/vh0g==}
-    peerDependencies:
-      '@react-native-community/datetimepicker': '>=3.0.0'
-      react-native: '>=0.65.0'
-    dependencies:
-      '@react-native-community/datetimepicker': 6.7.3
-      prop-types: 15.8.1
-      react-native: 0.71.7(@babel/core@7.21.4)(@babel/preset-env@7.21.4)(react@18.2.0)
-    dev: false
 
   /react-native-permissions@3.8.0(react-native@0.71.7)(react@18.2.0):
     resolution: {integrity: sha512-BfZ7ksgdpGchHZH8M/kxCGZbWeACANbnPmb3hNjVOMDQusc4PWlPpobX3eBqYMSKbpi7bMECeV9BVU4QuwAf9A==}

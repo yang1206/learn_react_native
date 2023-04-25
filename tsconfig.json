@@ -10,7 +10,9 @@
       "@env": [
         "./env.js"
       ]
-    }
+    },
+    "esModuleInterop": true,
+    "checkJs": true
   },
   "exclude": [
     "node_modules",

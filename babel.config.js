@@ -2,21 +2,26 @@ const plugins = [
   [
     'module-resolver',
     {
-      extensions: ['.ios.js', '.android.js', '.js', '.ts', '.tsx', '.json'],
+      extensions: [
+        '.ios.ts',
+        '.android.ts',
+        '.ts',
+        '.ios.tsx',
+        '.android.tsx',
+        '.tsx',
+        '.jsx',
+        '.js',
+        '.json',
+      ],
       alias: {
         '@': './src',
       },
     },
   ],
-  [
-    'react-native-reanimated/plugin',
-    {
-      globals: ['__scanCodes'],
-    },
-  ],
   ['nativewind/babel',
-    // { mode: 'compileOnly' },
+    { mode: 'compileOnly' },
   ],
+  'react-native-reanimated/plugin',
 ]
 
 const vanillaConfig = {

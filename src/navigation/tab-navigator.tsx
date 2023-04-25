@@ -5,13 +5,15 @@ import type { ComponentType } from 'react'
 import * as React from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import type { IconProps } from 'react-native-vector-icons/Icon'
-import { FirstNavigator } from './first-navigator'
-import { UserScreen } from '@/screens'
-import { colors } from '@/ui'
+import { useNavigation } from '@react-navigation/native'
+import { FeedNavigator } from './feed-navigator'
+import { HomeScreen, UserScreen } from '@/screens'
+import { TouchableOpacity, colors } from '@/ui'
 import { t } from '@/locales'
 
 export type TabParamList = {
-  First: undefined
+  Home: undefined
+  FeedNavigator: undefined
   User: undefined
 }
 
@@ -26,7 +28,7 @@ type TabIconsType = {
 const Tab = createBottomTabNavigator<TabParamList>()
 
 const tabsIcons: TabIconsType = {
-  First: props => <Ionicons
+  Home: props => <Ionicons
     name="home-outline"
     {...props}
   />,
@@ -34,6 +36,11 @@ const tabsIcons: TabIconsType = {
     name="person"
     {...props}
   />,
+  FeedNavigator: props => <Ionicons
+    name="person"
+    {...props}
+  />,
+
 }
 
 export interface TabList<T extends keyof TabParamList> {
@@ -43,9 +50,14 @@ export interface TabList<T extends keyof TabParamList> {
 
 const tabs: TabType[] = [
   {
-    name: 'First',
-    component: FirstNavigator,
+    name: 'Home',
+    component: HomeScreen,
     label: t('navigation.home'),
+  },
+  {
+    name: 'FeedNavigator',
+    component: FeedNavigator,
+    label: 'Feed',
   },
   {
     name: 'User',
@@ -65,6 +77,7 @@ function BarIcon({ color, name, size, ...reset }: BarIconType) {
   return <Icon color={color} size={size} {...reset} />
 }
 export function TabNavigator() {
+  const { navigate } = useNavigation()
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -83,11 +96,14 @@ export function TabNavigator() {
               component={component}
               options={{
                 title: label,
-                headerStyle: {
-                  backgroundColor: '#00b38a',
-                },
-                headerTintColor: '#fff',
-                headerShown: name !== 'First',
+                headerShown: name !== 'FeedNavigator',
+                headerRight: name === 'Home'
+                  ? () => (
+                  <TouchableOpacity onPress={() => { navigate('CameraNavigator') }}>
+                      <Ionicons color={colors.primary[400]} name="camera-outline" size={30} style={{ marginRight: 10 }}></Ionicons>
+                  </TouchableOpacity>
+                    )
+                  : () => <></>,
               }}
             />
           )

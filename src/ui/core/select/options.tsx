@@ -5,7 +5,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import { renderBackdrop } from '../bottom-sheet'
 import { Pressable } from '../pressable'
 import { Text } from '../text'
-// import { Check } from './icons'
+import { useThemeStore } from '@/hooks'
 
 export type IOption = { label: string; value: string | number }
 
@@ -18,20 +18,22 @@ type OptionsProps = {
 function keyExtractor(item: IOption) {
   return `select-item-${item.value}`
 }
+
 function Option({
   label,
   selected = false,
   ...props
 }: PressableProps & { selected?: boolean; label: string }) {
+  const { isDark } = useThemeStore()
   return (
     <Pressable
       className="flex-row items-center border-b-[1px] border-neutral-300 py-2 px-3"
       {...props}
     >
-      <Text variant="md" className="flex-1">
+      <Text variant="md" className="flex-1 text-black  dark:text-white">
         {label}
       </Text>
-      {selected && <Ionicons name="checkmark-outline" size={24} />}
+      {selected && <Ionicons color={isDark ? 'white' : 'black'} name="checkmark-outline" size={24} />}
     </Pressable>
   )
 }
@@ -50,6 +52,7 @@ export const Options = React.forwardRef<BottomSheetModal, OptionsProps>(
       ),
       [onSelect, value],
     )
+    const { isDark } = useThemeStore()
 
     return (
       <BottomSheetModal
@@ -57,9 +60,12 @@ export const Options = React.forwardRef<BottomSheetModal, OptionsProps>(
         index={0}
         snapPoints={snapPoints}
         backdropComponent={renderBackdrop}
+        handleStyle={{ backgroundColor: isDark ? '#333' : 'white' }}
+        style={{ backgroundColor: isDark ? 'black' : '' }}
       >
         <BottomSheetFlatList
           data={options}
+          style={{ backgroundColor: isDark ? 'black' : '' }}
           keyExtractor={keyExtractor}
           renderItem={renderSelectItem}
         />

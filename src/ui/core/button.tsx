@@ -18,7 +18,7 @@ type BVariant = {
 export const buttonVariants: BVariant = {
   defaults: {
     container:
-      'flex-row items-center justify-center rounded-full px-12 py-3 my-2',
+      'flex-row items-center justify-center  px-12 py-3 my-2',
     label: 'text-[16px] font-medium text-white',
     indicator: 'text-white h-[30px]',
   },
@@ -43,6 +43,7 @@ interface Props extends TouchableOpacityProps {
   variant?: VariantName
   label?: string
   loading?: boolean
+  shape?: 'square' | 'circle'
 }
 
 export function Button({
@@ -50,6 +51,7 @@ export function Button({
   loading = false,
   variant = 'primary',
   disabled = false,
+  shape = 'circle',
   ...props
 }: Props) {
   return (
@@ -59,6 +61,7 @@ export function Button({
     ${buttonVariants.defaults.container}
      ${buttonVariants[variant].container}
      ${disabled ? 'opacity-50' : ''}
+     ${shape === 'circle' ? 'rounded-full' : ''}
     `}
       {...props}
     >
